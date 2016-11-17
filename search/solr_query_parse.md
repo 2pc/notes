@@ -25,4 +25,5 @@ SearchHandler>handleRequestBody()-->QueryComponent.process-->SolrIndexSearcher.s
 1. [全面解剖 Solr query 到lucene query](http://blog.sina.com.cn/s/blog_4d58e3c001017ynp.html)
 2. [solr搜索过程解析](http://blog.csdn.net/morningsun1990/article/details/48541465)
 3. [Solr 查询中fq参数的解析原理](http://blog.sina.com.cn/s/blog_56fd58ab0100v3up.html)
+4. [Solr之缓存篇](https://my.oschina.net/u/1026644/blog/123957)
 
