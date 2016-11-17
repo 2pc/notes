@@ -28,4 +28,5 @@ SearchHandler>handleRequestBody()-->QueryComponent.process-->SolrIndexSearcher.s
 4. [Solr之缓存篇](https://my.oschina.net/u/1026644/blog/123957)
 5. [Solr查询过程源码分析](http://blog.csdn.net/flyingpig4/article/details/6305488)
 6. [Solr4.8.0源码分析(5)之查询流程分析总述](http://www.cnblogs.com/rcfeng/p/3923534.html)
+7. [结合源码分析Solr&Lucene查询打分的工作流程](http://blog.csdn.net/yangbutao/article/details/9768317)
 
