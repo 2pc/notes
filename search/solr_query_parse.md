@@ -27,4 +27,5 @@ SearchHandler>handleRequestBody()-->QueryComponent.process-->SolrIndexSearcher.s
 3. [Solr 查询中fq参数的解析原理](http://blog.sina.com.cn/s/blog_56fd58ab0100v3up.html)
 4. [Solr之缓存篇](https://my.oschina.net/u/1026644/blog/123957)
 5. [Solr查询过程源码分析](http://blog.csdn.net/flyingpig4/article/details/6305488)
+6. [Solr4.8.0源码分析(5)之查询流程分析总述](http://www.cnblogs.com/rcfeng/p/3923534.html)
 
