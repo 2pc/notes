@@ -14,7 +14,7 @@ prepare中进行参数解析，包括
 3. 生成对应Filter
 4. 生成对应的Group
 
-process中
+process中调用SolrIndexSearher的search实际调用了IndexSearcher的search()
 
 ```
 SearchHandler>handleRequestBody()-->QueryComponent.process-->SolrIndexSearcher.search(result, cmd)
