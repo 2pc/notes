@@ -47,3 +47,12 @@ mkdir -p /root/.keras/ && touch /root/.keras/keras.json && \
     echo "    \"backend\": \"tensorflow\""          >> /root/.keras/keras.json && \
     echo "}"                    
 ```
+example lstm
+
+```
+git clone https://github.com/aymericdamien/TensorFlow-Examples.git
+git clone https://github.com/fchollet/keras.git
+```
+
+deep learning 分词
+
