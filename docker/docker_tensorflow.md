@@ -27,3 +27,10 @@ title CentOS (3.10.5-3.el6.x86_64)
 ```
 
 重启
+
+```
+docker images
+docker search tensorflow 
+docker pull tensorflow/tensorflow
+docker run -it -p 8888:8888 tensorflow/tensorflow bash
+```
