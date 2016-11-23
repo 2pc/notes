@@ -34,3 +34,16 @@ docker search tensorflow
 docker pull tensorflow/tensorflow
 docker run -it -p 8888:8888 tensorflow/tensorflow bash
 ```
+
+keras
+
+```
+pip install keras
+mkdir -p /root/.keras/ && touch /root/.keras/keras.json && \
+    echo "{"                                    > /root/.keras/keras.json && \
+    echo "    \"image_dim_ordering\": \"tf\","  >> /root/.keras/keras.json && \
+    echo "    \"epsilon\": 1e-07,"              >> /root/.keras/keras.json && \
+    echo "    \"floatx\": \"float64\","         >> /root/.keras/keras.json && \
+    echo "    \"backend\": \"tensorflow\""          >> /root/.keras/keras.json && \
+    echo "}"                    
+```
