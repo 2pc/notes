@@ -1,5 +1,9 @@
 
 
+对于文档i与j，打分函数为F(X)（X=w1v1+w2v2+w3v3+...+wnvn）,则F(Xi)-F(Xj)越大，i排在j前面的概率越高,即F(Xi)-F(Xj)表示文档i排在j前面的概率 
+
+但是概率的范围应该是[0,1]之间，参考逻辑斯蒂回归的归一化函数归一化
+
 [Learning to Rank using Gradient Descent](https://zhuanlan.zhihu.com/p/20711017) 
 
 [交叉熵代价函数(损失函数)及其求导推导](http://blog.csdn.net/jasonzzj/article/details/52017438)
