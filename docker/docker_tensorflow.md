@@ -48,3 +48,15 @@ docker pull centos:6.6
 docker run -i -t centos /bin/bash
 ```
 
+#### error:undefined reference to `pthread_create'
+edit  BUILD add linkopts = ["-pthread"],
+```
+vim third_party/word2vec/BUILD    
+cc_binary(name="word2vec",
+srcs=[
+ 'word2vec.c',
+],
+linkopts = ["-pthread"],
+);
+```
+
