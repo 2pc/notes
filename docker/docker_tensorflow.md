@@ -41,3 +41,10 @@ docker attach (container id)
 
 ```
 
+centos
+
+```
+docker pull centos:6.6
+docker run -i -t centos /bin/bash
+```
+
