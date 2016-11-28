@@ -1,4 +1,4 @@
-docker install 
+#### docker install 
 
 ```
 yum install https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/docker-engine-1.7.1-1.el6.x86_64.rpm
@@ -26,7 +26,7 @@ hiddenmenu
 title CentOS (3.10.5-3.el6.x86_64)
 ```
 
-重启
+#### 重启
 
 ```
 docker images
@@ -41,7 +41,7 @@ docker attach (container id)
 
 ```
 
-centos
+#### centos
 
 ```
 docker pull centos:6.6
