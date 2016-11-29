@@ -4,4 +4,8 @@
 ```
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
+```　　　
+#### BlasNotFoundError   
+```
+yum install blas-devel lapack-devel
 ```
