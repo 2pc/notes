@@ -38,7 +38,8 @@ apt-get install vim
 apt-get install git
 docker ps -a
 docker attach (container id)
-
+docker restart    ac5fec306f6c
+docker attach ac5fec306f6c
 ```
 
 ### centos
