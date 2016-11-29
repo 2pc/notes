@@ -36,7 +36,7 @@ docker run -it -p 8888:8888 tensorflow/tensorflow bash
 apt-get update 
 apt-get install vim 
 apt-get install git
-docker ps
+docker ps -a
 docker attach (container id)
 
 ```
