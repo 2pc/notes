@@ -24,3 +24,4 @@ vim /usr/bin/yum
 #修改 yum中的python 
 将第一行  #!/usr/bin/python  改为 #!/usr/bin/python2.6
 ```
+[升级python3 pip3 ](http://www.jianshu.com/p/8bd6e0695d7f)
