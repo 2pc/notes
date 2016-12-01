@@ -16,4 +16,9 @@ python kcws/train/filter_sentence.py /data/kcws/all.txt
 安装好tensorflow,切换到kcws代码目录，运行
 ```
 python kcws/train/train_cws_lstm.py --word2vec_path /data/kcws/kcws/models/vec.txt --train_data_path /data/kcws/train.txt  --test_data_path /data/kcws/test.txt  --max_sentence_len 80 --learning_rate 0.001
+```   
+生成vocab
+```
+bazel  build kcws/cc:dump_vocab
+./bazel-bin/kcws/cc/dump_vocab /data/kcws/kcws/models/vec.txt vocab.txt
 ```
