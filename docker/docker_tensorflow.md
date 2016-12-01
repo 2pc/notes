@@ -43,7 +43,7 @@ docker attach ac5fec306f6c
 ```
 
 ### centos
-[Docker-hub](https://hub.docker.com/_/centos/)
+[centos-docker-hub](https://hub.docker.com/_/centos/)
 ```
 docker pull centos:6.6
 docker run -i -t centos /bin/bash
