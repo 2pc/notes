@@ -22,3 +22,7 @@ python kcws/train/train_cws_lstm.py --word2vec_path /data/kcws/kcws/models/vec.t
 bazel  build kcws/cc:dump_vocab
 ./bazel-bin/kcws/cc/dump_vocab /data/kcws/kcws/models/vec.txt vocab.txt
 ```
+运行webservice
+```
+./bazel-bin/kcws/cc/seg_backend_api --model_path=/data/kcws/kcws/models/seg_model.pbtxt   --vocab_path=/data/kcws/vocab.txt   --max_sentence_len=80
+```
