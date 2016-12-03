@@ -30,8 +30,40 @@ u'\u4f5c'
 asdf, 中文
 ```
 
-python3
-
+python3.5.1 
+[解决Python3下打印utf-8字符串出现UnicodeEncodeError的问题](http://www.binss.me/blog/solve-problem-of-python3-raise-unicodeencodeerror-when-print-utf8-string/)
 ```
+[root@2983432b47f6 char-rnn-cn]# python
+Python 3.5.1 (default, Dec  1 2016, 16:04:10) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-4)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print('\u8266')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+UnicodeEncodeError: 'ascii' codec can't encode character '\u8266' in position 0: ordinal not in range(128)
+>>> sys.stdout
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'sys' is not defined
+>>> import sys
+>>> sys.stdout
+<_io.TextIOWrapper name='<stdout>' mode='w' encoding='ANSI_X3.4-1968'>
+>>> sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'io' is not defined
+>>> import io
+>>> print('\u8266')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+UnicodeEncodeError: 'ascii' codec can't encode character '\u8266' in position 0: ordinal not in range(128)
+>>> sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+>>> sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')^[[A^[[B
+  File "<stdin>", line 1
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+                                                                      ^
+SyntaxError: invalid syntax
+>>> print('\u8266')
+艦
 
 ```
