@@ -18,4 +18,20 @@ ascii
 u'\u4f5c'
 >>> print a.encode('utf-8')
 作
+
+#print ','.join(['中文1','中文2'])
+>>> print ["中文"]
+['\xe4\xb8\xad\xe6\x96\x87']
+>>> print ["asdf", "中文"]
+['asdf', '\xe4\xb8\xad\xe6\x96\x87']
+>>> print '[' + ', '.join(["asdf", "中文"]) + ']'
+[asdf, 中文]
+>>> print ", ".join(["asdf", "中文"])
+asdf, 中文
+```
+
+python3
+
+```
+
 ```
