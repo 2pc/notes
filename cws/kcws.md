@@ -17,6 +17,10 @@ python kcws/train/filter_sentence.py /data/kcws/all.txt
 ```
 python kcws/train/train_cws_lstm.py --word2vec_path /data/kcws/kcws/models/vec.txt --train_data_path /data/kcws/train.txt  --test_data_path /data/kcws/test.txt  --max_sentence_len 80 --learning_rate 0.001
 ```   
+导出model   
+```
+python  ../tensorflow/bazel-tensorflow/tensorflow/python/tools/freeze_graph.py --input_graph /data/kcws/logs/graph.pbtxt  --input_checkpoint /data/kcws/logs/model.ckpt --output_node_names "transitions,Reshape_7" --output_graph /data/kcws/seg.pb.txt
+```
 生成vocab
 ```
 bazel  build kcws/cc:dump_vocab
