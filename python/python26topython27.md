@@ -22,6 +22,20 @@ yum修复
 ```
 vim /usr/bin/yum
 #修改 yum中的python 
-将第一行  #!/usr/bin/python  改为 #!/usr/bin/python2.6
+将第一行  #!/usr/bin/python  改为 #!/usr/bin/python2.7
 ```
 [升级python3 pip3 ](http://www.jianshu.com/p/8bd6e0695d7f)
+
+#  升级3.5之后使用yum lrzsz报错
+```
+Downloading packages:
+  File "/usr/libexec/urlgrabber-ext-down", line 28
+    except OSError, e:
+                  ^
+SyntaxError: invalid syntax
+```   
+修改   
+```
+vim /usr/libexec/urlgrabber-ext-down
+将第一行  #!/usr/bin/python  改为 #!/usr/bin/python2.7
+```
