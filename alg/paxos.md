@@ -6,4 +6,5 @@
    
    
    
-   [Paxos算法2-算法过程](http://blog.csdn.net/chen77716/article/details/6170235)
+   [Paxos算法2-算法过程](http://blog.csdn.net/chen77716/article/details/6170235)   
+   [可靠分布式系统基础 Paxos 的直观解释](http://www.slideshare.net/drmingdrmer/paxos-51731377)
