@@ -10,5 +10,6 @@
    
    
    [Paxos算法2-算法过程](http://blog.csdn.net/chen77716/article/details/6170235)   
-   [可靠分布式系统基础 Paxos 的直观解释](http://www.slideshare.net/drmingdrmer/paxos-51731377)
-   [Paxos算法的一个容易理解的数学证明 ](http://blog.chinaunix.net/uid-12023855-id-4096558.html)
+   [可靠分布式系统基础 Paxos 的直观解释](http://www.slideshare.net/drmingdrmer/paxos-51731377)   
+   [Paxos算法的一个容易理解的数学证明 ](http://blog.chinaunix.net/uid-12023855-id-4096558.html)   
+   [基础paxos算法的解决场景](http://blog.csdn.net/kuangzhanshatian/article/details/50600165)
