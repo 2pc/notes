@@ -21,9 +21,9 @@ Heap after GC invocations=6 (full 0):
 ```
 
 2016-09-06T15:58:42.350+0800: 323.021: [GC 323.022: [ParNew
-Desired survivor size 322102880 bytes, new threshold 8 (max 8)
-- age   1:  274482200 bytes,  274482200 total
+Desired survivor size 322102880 bytes, new threshold 8 (max 8) - age   1:  274482200 bytes,  274482200 total
 : 1747648K->347577K(1747648K), 0.4539530 secs] 2878992K->1809287K(8039104K), 0.4550950 secs] [Times: user=1.43 sys=0.08, real=0.46 secs] 
+
 >
 * "[GC" 或者"[FullGC" 说明了这次垃圾收集停顿的类型，而不是用来区分新生代GC还是年老代GC的，
 如果有"FullGC"，说明这次GC发生了Stop-The-World(STW)
