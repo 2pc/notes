@@ -4,6 +4,8 @@ consumer
 
 [Consumer Client Re-Design](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)
 
-[Kafka源码深度解析-csdn-chunlongyu](http://blog.csdn.net/chunlongyu/article/category/6417583)   
+
+#### blog收集   
+[Kafka源码深度解析-csdn-chunlongyu](http://blog.csdn.net/chunlongyu/article/category/6417583)   
 [Jason's Blog](http://www.jasongj.com/tags/Kafka/)   
 [kafka0.9.0源码分析-csdn-隔壁老杨hongs](http://blog.csdn.net/u014393917/article/category/6332828)
