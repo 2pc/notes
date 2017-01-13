@@ -8,4 +8,5 @@ consumer
 #### blog收集   
 [Kafka源码深度解析-csdn-chunlongyu](http://blog.csdn.net/chunlongyu/article/category/6417583)   
 [Jason's Blog](http://www.jasongj.com/tags/Kafka/)   
-[kafka0.9.0源码分析-csdn-隔壁老杨hongs](http://blog.csdn.net/u014393917/article/category/6332828)
+[kafka0.9.0源码分析-csdn-隔壁老杨hongs](http://blog.csdn.net/u014393917/article/category/6332828)   
+[《Kafka技术内幕》目录](http://zqhxuyuan.github.io/2017/01/01/Kafka-Code-Index/#《Kafka技术内幕》目录)
