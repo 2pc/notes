@@ -11,3 +11,7 @@
 [GCViewer](https://github.com/chewiebug/GCViewer)
 
 [Understanding CMS GC Logs](https://blogs.oracle.com/poonam/entry/understanding_cms_gc_logs)
+
+[Troubleshooting Long GC Pauses](https://blogs.oracle.com/poonam/entry/troubleshooting_long_gc_pauses)
+
+[Understanding G1 GC Logs](https://blogs.oracle.com/poonam/entry/understanding_g1_gc_logs)
