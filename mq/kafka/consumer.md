@@ -75,8 +75,35 @@ def add(memberId: String, member: MemberMetadata) {
     members.put(memberId, member)
   }
 ```
+另外在中，如果是已经存在的member,则应该对相应的group更新操作
 
+```
+updateMemberAndRebalance
+```
+但是不论是新的member添加到group还是更新，都是走的maybePrepareRebalance
 
+```
+private def maybePrepareRebalance(group: GroupMetadata) {
+  group synchronized {
+    if (group.canRebalance)
+      prepareRebalance(group)
+  }
+}
+
+private def prepareRebalance(group: GroupMetadata) {
+  // if any members are awaiting sync, cancel their request and have them rejoin
+  if (group.is(AwaitingSync))
+    resetAndPropagateAssignmentError(group, Errors.REBALANCE_IN_PROGRESS.code)
+
+  group.transitionTo(PreparingRebalance)
+  info("Preparing to restabilize group %s with old generation %s".format(group.groupId, group.generationId))
+
+  val rebalanceTimeout = group.rebalanceTimeout
+  val delayedRebalance = new DelayedJoin(this, group, rebalanceTimeout)
+  val groupKey = GroupKey(group.groupId)
+  joinPurgatory.tryCompleteElseWatch(delayedRebalance, Seq(groupKey))
+}
+```
 [Kafka Client-side Assignment Proposal](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
 [Consumer Client Re-Design](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
 [Kafka 0.9 Consumer Rewrite Design](https://cwiki.apache.org/confluence/display/KAFKA/Kafka+0.9+Consumer+Rewrite+Design)
