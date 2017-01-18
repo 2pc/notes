@@ -9,8 +9,32 @@
 ```
 KafkaApis.handle(case RequestKeys.JoinGroupKey => handleJoinGroupRequest(request))-->KafkaApis.handleJoinGroupRequest--> GroupCoordinator.handleJoinGroup()-->GroupCoordinator.doJoinGroup()-->GroupCoordinator.addMemberAndRebalance()
 ```
+handleJoinGroup中会首先从groupManager(GroupMetadataManager)中获取group,如果没有，则创建GroupMetaData(group),并添加到groupManager
 
-生成MemberMetaData(member)，并添加到GroupMetaData(group)
+```
+var group = groupManager.getGroup(groupId)
+if (group == null) {
+  if (memberId != JoinGroupRequest.UNKNOWN_MEMBER_ID) {
+    responseCallback(joinError(memberId, Errors.UNKNOWN_MEMBER_ID.code))
+  } else {
+    group = groupManager.addGroup(new GroupMetadata(groupId, protocolType))
+    doJoinGroup(group, memberId, clientId, clientHost, sessionTimeoutMs, protocolType, protocols, responseCallback)
+  }
+} else {
+  doJoinGroup(group, memberId, clientId, clientHost, sessionTimeoutMs, protocolType, protocols, responseCallback)
+}
+
+def addGroup(group: GroupMetadata): GroupMetadata = {
+  val currentGroup = groupsCache.putIfNotExists(group.groupId, group)
+  if (currentGroup != null) {
+    currentGroup
+  } else {
+    group
+  }
+}
+```
+
+addMemberAndRebalance中生成MemberMetaData(member)，并添加到GroupMetaData(group)
 
 ```
 private def addMemberAndRebalance(sessionTimeoutMs: Int,
