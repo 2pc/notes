@@ -202,8 +202,68 @@ def tryCompleteElseWatch(operation: T, watchKeys: Seq[Any]): Boolean = {
 1. 优先做一次尝试看是不是join完成了   
 2. 1如果没成功则需要添加watch，监听事件咯，谁知道他啥时候完成触发呢，反正先watch   
 3. 然后再尝试是不是join完成了   
-4. 最后，还是没有的话只好交给(超时收割机reaper)timeoutTimer去调度去执行。
+4. 最后，还是没有的话只好交给(超时收割机reaper)timeoutTimer去调度去执行。   
 
+DelayedJoin与GroupCoordinator的调用流程
+```
+DelayedJoin.tryComplete-->GroupCoordinator.tryCompleteJoin()-->DelayedJoin.forceComplete()-->
+DelayedJoin.cancel()-->DelayedJoin.onComplete()-->GroupCoordinator.onCompleteJoin()
+```
+
+>
+1. DelayedJoin.tryComplete()这个操作很简单，只是在GroupCoordinator中判断下每个member是不是有回调函数为null的，
+2. 主要还是在GroupCoordinator.onCompleteJoin()
+
+```
+def onCompleteJoin(group: GroupMetadata) {
+    group synchronized {
+      /**
+        * 1.如果有join失败(其实就是callback=null)的member,需要将这些member从group中移除
+        * 2.同时，如果group里没有member,首先需要将group转换为Dead状态，然后从groupManager中移除
+        */
+      val failedMembers = group.notYetRejoinedMembers
+      if (group.isEmpty || !failedMembers.isEmpty) {
+        failedMembers.foreach { failedMember =>
+          group.remove(failedMember.memberId)
+          // TODO: cut the socket connection to the client
+        }
+
+        // TODO KAFKA-2720: only remove group in the background thread
+        if (group.isEmpty) {
+          group.transitionTo(Dead)
+          groupManager.removeGroup(group)
+          info("Group %s generation %s is dead and removed".format(group.groupId, group.generationId))
+        }
+      }
+      if (!group.is(Dead)) {
+        /**
+          * 1. group的generationId增1，设置改group状态为AwaitingSync
+          * 2. 构造JoinGroupResult，并设置给callback
+          * 3. 这里构造函数是不是leader member存在差异，如果是leader需要返回所有members'Metadata
+          */
+        group.initNextGeneration()
+        info("Stabilized group %s generation %s".format(group.groupId, group.generationId))
+
+        // trigger the awaiting join group response callback for all the members after rebalancing
+        for (member <- group.allMemberMetadata) {
+          assert(member.awaitingJoinCallback != null)
+          val joinResult = JoinGroupResult(
+            members=if (member.memberId == group.leaderId) { group.currentMemberMetadata } else { Map.empty },
+            memberId=member.memberId,
+            generationId=group.generationId,
+            subProtocol=group.protocol,
+            leaderId=group.leaderId,
+            errorCode=Errors.NONE.code)
+
+          member.awaitingJoinCallback(joinResult)
+          member.awaitingJoinCallback = null
+          /*心跳超时调度处理*/
+          completeAndScheduleNextHeartbeatExpiration(group, member)
+        }
+      }
+    }
+  }
+```
 [Kafka Client-side Assignment Proposal](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
 [Consumer Client Re-Design](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
 [Kafka 0.9 Consumer Rewrite Design](https://cwiki.apache.org/confluence/display/KAFKA/Kafka+0.9+Consumer+Rewrite+Design)
