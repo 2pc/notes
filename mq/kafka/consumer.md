@@ -75,6 +75,20 @@ def add(memberId: String, member: MemberMetadata) {
     members.put(memberId, member)
   }
 ```
+
+这个将在ConsumerCoordinator端用来判断当前自己是不是ConsumerCoordinator的leader判断,coordinator(AbstractCoordinator).performGroupJoin-->JoinGroupResponseHandler.handle()
+
+```
+if (joinResponse.isLeader()) {
+    onJoinLeader(joinResponse).chain(future);
+} else {
+    onJoinFollower().chain(future);
+}
+public boolean isLeader() {
+    return memberId.equals(leaderId); //当前memberId与leaderId一致则为ConsumerCoordinator的leader
+}
+```
+
 另外在中，如果是已经存在的member,则应该对相应的group更新操作
 
 ```
