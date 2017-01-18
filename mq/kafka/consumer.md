@@ -29,6 +29,12 @@ private def addMemberAndRebalance(sessionTimeoutMs: Int,
 }
 ```
 
+group的GroupState默认为Stable
+
+```
+private var state: GroupState = Stable
+```
+
 其中memberId为clientId+uuid
 
 ```
