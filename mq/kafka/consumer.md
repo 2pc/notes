@@ -10,7 +10,8 @@
 KafkaApis.handle(case RequestKeys.JoinGroupKey => handleJoinGroupRequest(request))-->KafkaApis.handleJoinGroupRequest--> GroupCoordinator.handleJoinGroup()-->GroupCoordinator.doJoinGroup()-->GroupCoordinator.addMemberAndRebalance()
 ```
 
-生成MemberMetaData，并添加到GroupMetaData
+生成MemberMetaData(member)，并添加到GroupMetaData(group)
+
 ```
 private def addMemberAndRebalance(sessionTimeoutMs: Int,
                                   clientId: String,
