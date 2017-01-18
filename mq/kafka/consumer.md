@@ -264,6 +264,19 @@ def onCompleteJoin(group: GroupMetadata) {
     }
   }
 ```
-[Kafka Client-side Assignment Proposal](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
+callback函数的定义sendResponseCallback
+```
+// the callback for sending a join-group response
+def sendResponseCallback(joinResult: JoinGroupResult) {
+  val members = joinResult.members map { case (memberId, metadataArray) => (memberId, ByteBuffer.wrap(metadataArray)) }
+  val responseBody = new JoinGroupResponse(joinResult.errorCode, joinResult.generationId, joinResult.subProtocol,
+    joinResult.memberId, joinResult.leaderId, members)
+
+  trace("Sending join group response %s for correlation id %d to client %s."
+    .format(responseBody, request.header.correlationId, request.header.clientId))
+  requestChannel.sendResponse(new RequestChannel.Response(request, new ResponseSend(request.connectionId, responseHeader, responseBody)))
+}
+```
+[Kafka Client-side Assignment Proposal](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
 [Consumer Client Re-Design](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
 [Kafka 0.9 Consumer Rewrite Design](https://cwiki.apache.org/confluence/display/KAFKA/Kafka+0.9+Consumer+Rewrite+Design)
