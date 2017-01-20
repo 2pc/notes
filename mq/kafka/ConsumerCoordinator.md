@@ -180,4 +180,76 @@ private Map<TopicPartition, List<ConsumerRecord<K, V>>> pollOnce(long timeout) {
     return fetcher.fetchedRecords();
 }
 ```
+ fetcher.fetchedRecords 获取fetch中已经获取的消息记录
+ 
+ ```
+public Map<TopicPartition, List<ConsumerRecord<K, V>>> fetchedRecords() {
+if (this.subscriptions.partitionAssignmentNeeded()) {
+    return Collections.emptyMap();
+} else {
+    Map<TopicPartition, List<ConsumerRecord<K, V>>> drained = new HashMap<>();
+    throwIfOffsetOutOfRange();
+    throwIfUnauthorizedTopics();
+    throwIfRecordTooLarge();
 
+    for (PartitionRecords<K, V> part : this.records) {
+        if (!subscriptions.isAssigned(part.partition)) {
+            // this can happen when a rebalance happened before fetched records are returned to the consumer's poll call
+            log.debug("Not returning fetched records for partition {} since it is no longer assigned", part.partition);
+            continue;
+        }
+
+        // note that the consumed position should always be available
+        // as long as the partition is still assigned
+        long consumed = subscriptions.consumed(part.partition);
+        if (!subscriptions.isFetchable(part.partition)) {
+            // this can happen when a partition consumption paused before fetched records are returned to the consumer's poll call
+            log.debug("Not returning fetched records for assigned partition {} since it is no longer fetchable", part.partition);
+
+            // we also need to reset the fetch positions to pretend we did not fetch
+            // this partition in the previous request at all
+            subscriptions.fetched(part.partition, consumed);
+        } else if (part.fetchOffset == consumed) {
+            long nextOffset = part.records.get(part.records.size() - 1).offset() + 1;
+
+            log.trace("Returning fetched records for assigned partition {} and update consumed position to {}", part.partition, nextOffset);
+
+            List<ConsumerRecord<K, V>> records = drained.get(part.partition);
+            if (records == null) {
+                records = part.records;
+                drained.put(part.partition, records);
+            } else {
+                records.addAll(part.records);
+            }
+            subscriptions.consumed(part.partition, nextOffset);
+        } else {
+            // these records aren't next in line based on the last consumed position, ignore them
+            // they must be from an obsolete request
+            log.debug("Ignoring fetched records for {} at offset {}", part.partition, part.fetchOffset);
+        }
+    }
+    this.records.clear();
+    return drained;
+}
+}
+ ```
+ 
+ 如果fetch有记录会发送一次poll,
+ 
+ ```
+ if (!records.isEmpty()) {
+        client.poll(0);
+        return records;
+    }
+ ```
+ 
+ 如果Fetcher中没有数据，需要通过Fetcher发送一次FETCH请求
+ 
+ ```
+fetcher.initFetches(cluster);
+client.poll(timeout);
+return fetcher.fetchedRecords();
+ 
+ ```
+ 
+ 
