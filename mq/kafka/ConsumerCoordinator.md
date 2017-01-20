@@ -118,6 +118,11 @@ private RequestFuture<ByteBuffer> onJoinFollower() {
 
 #### 获取topic的消息
 
+>
+1. 从pollOnce可以看出，首先是从fetch中获取之前已经获取的消息records，如果没有,fetch发送一次FETCH请求
+2. 如果获取到了数据记录，在记录返回之前，也需要在发送一次FETCH请求，快速返回。
+3. 如果没有获取到records，或者超时，直接返回空
+
 ```
 ConsumerRecords<byte[], byte[]> records = consumer.poll(1000)
 public ConsumerRecords<K, V> poll(long timeout) {
