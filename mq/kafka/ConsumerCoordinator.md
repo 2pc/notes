@@ -1,5 +1,19 @@
 #### ConsumerCoordinator
 
+消费者调用
+
+```
+consumer.subscribe(Collections.singletonList(topic), new NoOpConsumerRebalanceListener());
+ConsumerRecords<byte[], byte[]> records = consumer.poll(1000);//nioSelector.select(timeout) or nioSelector.selectNow()
+for (ConsumerRecord<byte[], byte[]>  record: records) {
+    System.out.print(record.offset());
+    System.out.print(record.topic());
+    System.out.print(record.offset());
+    System.out.print(record.key());
+    System.out.print(record.value());
+}
+consumer.commitSync();
+```
 ConsumerCoordinator完成joinGroup后，在回调函数JoinGroupResponseHandler.handle()里进行请求相应其后的处理
 
 ```
