@@ -252,7 +252,7 @@ return fetcher.fetchedRecords();
  
  ```
  
- 在中会发送GROUP_COORDINATOR请求，获取coordinator的节点Node
+ 在ensureCoordinatorKnown()中会发送GROUP_COORDINATOR请求，获取coordinator的节点Node
  
  ```
  public void ensureCoordinatorKnown() {
@@ -299,6 +299,7 @@ private RequestFuture<Void> sendGroupMetadataRequest() {
  1. 从GroupCoordinatorResponse中得到coordinator对应的Node,建立连接
  2. 心跳处理
  ```
+ 
 private void handleGroupMetadataResponse(ClientResponse resp, RequestFuture<Void> future) {
     log.debug("Group metadata response {}", resp);
 
