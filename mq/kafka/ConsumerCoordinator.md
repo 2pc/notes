@@ -29,6 +29,8 @@ consumer.commitSync();
 1. 将订阅的topic添加到subscription，groupSubscription，
 2. 设置needsPartitionAssignment=true,表示需要对当前consumer重新分配patition
 3. 对于不再订阅的topic，需要将patition信息移除
+
+
 ```
 try {
     if (topics.isEmpty()) {
