@@ -115,3 +115,64 @@ private RequestFuture<ByteBuffer> onJoinFollower() {
 }
 ```
 可以看出leader会将分区信息一起相应给server端，非leader，则分区信息为空集合
+
+#### 获取topic的消息
+
+```
+ConsumerRecords<byte[], byte[]> records = consumer.poll(1000)
+public ConsumerRecords<K, V> poll(long timeout) {
+    acquire();
+    try {
+        if (timeout < 0)
+            throw new IllegalArgumentException("Timeout must not be negative");
+
+        // poll for new data until the timeout expires
+        long start = time.milliseconds();
+        long remaining = timeout;
+        do {
+            Map<TopicPartition, List<ConsumerRecord<K, V>>> records = pollOnce(remaining);
+            if (!records.isEmpty()) {
+                // if data is available, then return it, but first send off the
+                // next round of fetches to enable pipelining while the user is
+                // handling the fetched records.
+                fetcher.initFetches(metadata.fetch());
+                client.poll(0);
+                return new ConsumerRecords<>(records);
+            }
+
+            long elapsed = time.milliseconds() - start;
+            remaining = timeout - elapsed;
+        } while (remaining > 0);
+
+        return ConsumerRecords.empty();
+    } finally {
+        release();
+    }
+}
+private Map<TopicPartition, List<ConsumerRecord<K, V>>> pollOnce(long timeout) {
+    // TODO: Sub-requests should take into account the poll timeout (KAFKA-1894)
+    coordinator.ensureCoordinatorKnown();
+
+    // ensure we have partitions assigned if we expect to
+    if (subscriptions.partitionsAutoAssigned())
+        coordinator.ensurePartitionAssignment();
+
+    // fetch positions if we have partitions we're subscribed to that we
+    // don't know the offset for
+    if (!subscriptions.hasAllFetchPositions())
+        updateFetchPositions(this.subscriptions.missingFetchPositions());
+
+    // init any new fetches (won't resend pending fetches)
+    Cluster cluster = this.metadata.fetch();
+    Map<TopicPartition, List<ConsumerRecord<K, V>>> records = fetcher.fetchedRecords();
+    // Avoid block waiting for response if we already have data available, e.g. from another API call to commit.
+    if (!records.isEmpty()) {
+        client.poll(0);
+        return records;
+    }
+    fetcher.initFetches(cluster);
+    client.poll(timeout);
+    return fetcher.fetchedRecords();
+}
+```
+
