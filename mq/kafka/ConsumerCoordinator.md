@@ -1,6 +1,6 @@
-#### ConsumerCoordinator
+### ConsumerCoordinator
 
-消费者调用
+#### 消费者调用
 
 ```
 Properties props = new Properties();
@@ -20,6 +20,54 @@ for (ConsumerRecord<byte[], byte[]>  record: records) {
     System.out.print(record.value());
 }
 consumer.commitSync();
+```
+#### 订阅topic
+
+主要更新patition的分配assignment，
+
+>
+1. 将订阅的topic添加到subscription，groupSubscription，
+2. 设置needsPartitionAssignment=true,表示需要对当前consumer重新分配patition
+3. 对于不再订阅的topic，需要将patition信息移除
+```
+try {
+    if (topics.isEmpty()) {
+        // treat subscribing to empty topic list as the same as unsubscribing
+        this.unsubscribe();
+    } else {
+        log.debug("Subscribed to topic(s): {}", Utils.join(topics, ", "));
+        this.subscriptions.subscribe(topics, listener);
+        metadata.setTopics(subscriptions.groupSubscription());
+    }
+} finally {
+    release();
+}
+public void subscribe(List<String> topics, ConsumerRebalanceListener listener) {
+    if (listener == null)
+        throw new IllegalArgumentException("RebalanceListener cannot be null");
+
+    if (!this.userAssignment.isEmpty() || this.subscribedPattern != null)
+        throw new IllegalStateException(SUBSCRIPTION_EXCEPTION_MESSAGE);
+
+    this.listener = listener;
+
+    changeSubscription(topics);
+}
+    public void changeSubscription(List<String> topicsToSubscribe) {
+    if (!this.subscription.equals(new HashSet<>(topicsToSubscribe))) {
+        this.subscription.clear();
+        this.subscription.addAll(topicsToSubscribe);
+        this.groupSubscription.addAll(topicsToSubscribe);
+        this.needsPartitionAssignment = true;
+
+        // Remove any assigned partitions which are no longer subscribed to
+        for (Iterator<TopicPartition> it = assignment.keySet().iterator(); it.hasNext(); ) {
+            TopicPartition tp = it.next();
+            if (!subscription.contains(tp.topic()))
+                it.remove();
+        }
+    }
+}
 ```
 ConsumerCoordinator完成joinGroup后，在回调函数JoinGroupResponseHandler.handle()里进行请求相应其后的处理
 
