@@ -252,4 +252,87 @@ return fetcher.fetchedRecords();
  
  ```
  
+ 在中会发送GROUP_COORDINATOR请求，获取coordinator的节点Node
+ 
+ ```
+ public void ensureCoordinatorKnown() {
+    while (coordinatorUnknown()) {
+        RequestFuture<Void> future = sendGroupMetadataRequest();
+        client.poll(future);
+
+        if (future.failed()) {
+            if (future.isRetriable())
+                client.awaitMetadataUpdate();
+            else
+                throw future.exception();
+        }
+    }
+}
+
+private RequestFuture<Void> sendGroupMetadataRequest() {
+    // initiate the group metadata request
+    // find a node to ask about the coordinator
+    Node node = this.client.leastLoadedNode();
+    if (node == null) {
+        // TODO: If there are no brokers left, perhaps we should use the bootstrap set
+        // from configuration?
+        return RequestFuture.noBrokersAvailable();
+    } else {
+        // create a group  metadata request
+        log.debug("Issuing group metadata request to broker {}", node.id());
+        GroupCoordinatorRequest metadataRequest = new GroupCoordinatorRequest(this.groupId);
+        return client.send(node, ApiKeys.GROUP_COORDINATOR, metadataRequest)
+                .compose(new RequestFutureAdapter<ClientResponse, Void>() {
+                    @Override
+                    public void onSuccess(ClientResponse response, RequestFuture<Void> future) {
+                        handleGroupMetadataResponse(response, future);
+                    }
+                });
+    }
+}
+
+ ```
+ 
+ 看下GROUP_COORDINATOR请求发送成功后Adapter中处理,主要是handleGroupMetadataResponse()方法
+ 
+ >
+ 1. 从GroupCoordinatorResponse中得到coordinator对应的Node,建立连接
+ 2. 心跳处理
+ ```
+private void handleGroupMetadataResponse(ClientResponse resp, RequestFuture<Void> future) {
+    log.debug("Group metadata response {}", resp);
+
+    // parse the response to get the coordinator info if it is not disconnected,
+    // otherwise we need to request metadata update
+    if (resp.wasDisconnected()) {
+        future.raise(new DisconnectException());
+    } else if (!coordinatorUnknown()) {
+        // We already found the coordinator, so ignore the request
+        future.complete(null);
+    } else {
+        GroupCoordinatorResponse groupCoordinatorResponse = new GroupCoordinatorResponse(resp.responseBody());
+        // use MAX_VALUE - node.id as the coordinator id to mimic separate connections
+        // for the coordinator in the underlying network client layer
+        // TODO: this needs to be better handled in KAFKA-1935
+        short errorCode = groupCoordinatorResponse.errorCode();
+        if (errorCode == Errors.NONE.code()) {
+            this.coordinator = new Node(Integer.MAX_VALUE - groupCoordinatorResponse.node().id(),
+                    groupCoordinatorResponse.node().host(),
+                    groupCoordinatorResponse.node().port());
+
+            client.tryConnect(coordinator);
+
+            // start sending heartbeats only if we have a valid generation
+            if (generation > 0)
+                heartbeatTask.reset();
+            future.complete(null);
+        } else if (errorCode == Errors.GROUP_AUTHORIZATION_FAILED.code()) {
+            future.raise(new GroupAuthorizationException(groupId));
+        } else {
+            future.raise(Errors.forCode(errorCode));
+        }
+    }
+}
+ ```
+ 
  
