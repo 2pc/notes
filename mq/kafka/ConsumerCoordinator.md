@@ -3,6 +3,13 @@
 消费者调用
 
 ```
+Properties props = new Properties();
+props.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, "testSubscription");
+props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9999");
+props.setProperty(ConsumerConfig.METRIC_REPORTER_CLASSES_CONFIG, MockMetricsReporter.class.getName());
+
+KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<byte[], byte[]>(
+    props, new ByteArrayDeserializer(), new ByteArrayDeserializer());
 consumer.subscribe(Collections.singletonList(topic), new NoOpConsumerRebalanceListener());
 ConsumerRecords<byte[], byte[]> records = consumer.poll(1000);//nioSelector.select(timeout) or nioSelector.selectNow()
 for (ConsumerRecord<byte[], byte[]>  record: records) {
