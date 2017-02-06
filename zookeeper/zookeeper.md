@@ -4,4 +4,6 @@
 
 [ZooKeeper源码分析：Quorum请求的整个流程](http://blog.csdn.net/jeff_fangji/article/details/42988439)
 
-[ZooKeeper源码分析：Quorum请求的整个流程](http://www.linuxidc.com/Linux/2015-02/113730.htm)
+[ZooKeeper源码分析：Quorum请求的整个流程](http://www.linuxidc.com/Linux/2015-02/113730.htm)   
+
+[深入浅出Zookeeper之七分布式CREATE事务处理](http://iwinit.iteye.com/blog/1777109#bc2394912)
