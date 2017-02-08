@@ -9,7 +9,7 @@ kafka.common.KafkaException: Should not set log end offset on partition [my-repl
         at kafka.cluster.Replica.logEndOffset_$eq(Replica.scala:66)
 ```
 
-注册的broker的host都是hostname 
+否则注册的broker的host可能都是hostname 
 
 ```
 [zk: localhost:2181(CONNECTED) 24] get  /brokers/ids/0
