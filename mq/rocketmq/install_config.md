@@ -25,7 +25,9 @@ nohup bash bin/mqbroker -n 172.17.32.127:9876;172.17.32.128:9876 -c $ROCKETMQ_HO
 ### 在机器 B，启动第二个 Master
 nohup bash bin/mqbroker -n 172.17.32.127:9876;172.17.32.128:9876 -c $ROCKETMQ_HOME/conf/2m-2s-async/broker-b.properties  &
 ### 在机器 C，启动第一个 Slave
-nohup sh mqbroker -n 192.168.1.1:9876 -c $ROCKETMQ_HOME/conf/2m-2s-async/broker-a-s.properties &
+nohup bash bin/mqbroker -n 172.17.32.127:9876;172.17.32.128:9876 -c $ROCKETMQ_HOME/conf/2m-2s-async/broker-a-s.properties &
 ### 在机器 D，启动第二个 Slave
-nohup sh mqbroker -n 192.168.1.1:9876 -c $ROCKETMQ_HOME/conf/2m-2s-async/broker-b-s.properties &
+nohup bash bin/mqbroker -n 172.17.32.127:9876;172.17.32.128:9876 -c $ROCKETMQ_HOME/conf/2m-2s-async/broker-b-s.properties &
 ```
+
+
