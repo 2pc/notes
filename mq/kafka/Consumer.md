@@ -137,6 +137,12 @@ private Map<TopicPartition, List<ConsumerRecord<K, V>>> pollOnce(long timeout) {
     return fetcher.fetchedRecords();
 }
 ```
+
+updateFetchPositions()里边会发送OffsetFetchRequest请求，获取offset()
+
+```
+
+```
  fetcher.fetchedRecords 获取fetch中已经获取的消息记录
  
  ```
