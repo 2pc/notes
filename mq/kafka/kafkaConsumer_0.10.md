@@ -67,7 +67,7 @@ public ConsumerRecords<K, V> poll(long timeout) {
 来看下pollOnce，差不多也是：
 >
 1. 发送GroupCoordinatorRequest请求，获取coordinator
-2. 发送JoinGroupRequest请求，选举consumer leader等
+2. 发送JoinGroupRequest请求，加入consumer group选举consumer group's leader等
 3. 发送SyncGroupRequest请求同步partition assignments分区分配
 4. 发送OffsetFetchRequest请求获取offset
 5. 从Fetcher获取已经Cache到本地的记录
