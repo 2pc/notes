@@ -17,6 +17,8 @@
 ```
 bin/kafka-consumer-perf-test.sh   --topic test6 --zookeeper 172.17.32.127:2181 --messages 1000000 --group c3
 ```
+
+[Producer Performance Tuning for Apache Kafka](http://www.slideshare.net/JiangjieQin/producer-performance-tuning-for-apache-kafka-63147600)
  
  
  
