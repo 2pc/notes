@@ -10,5 +10,5 @@ consumer
 [Jason's Blog](http://www.jasongj.com/tags/Kafka/)   
 [kafka0.9.0源码分析-csdn-隔壁老杨hongs](http://blog.csdn.net/u014393917/article/category/6332828)   
 [《Kafka技术内幕》目录](http://zqhxuyuan.github.io/2017/01/01/Kafka-Code-Index/#《Kafka技术内幕》目录)   
-[Kafka 0.10 SocketServer源代码分析](http://www.cnblogs.com/byrhuangqiang/tag/kafka/)   \
+[Kafka 0.10 SocketServer源代码分析](http://www.cnblogs.com/byrhuangqiang/tag/kafka/)   
 [Kafka集群](http://uohzoaix.github.io/studies/)
