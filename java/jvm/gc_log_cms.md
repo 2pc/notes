@@ -15,6 +15,7 @@
 2017-02-27T14:26:17.082+0800: [CMS-concurrent-reset-start]
 2017-02-27T14:26:17.082+0800: [CMS-concurrent-reset: 0.000/0.000 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
 ```
+>
 1. 初始标记(CMS-initial-mark) 会暂停应用，单线程
 2. 并发标记(CMS-concurrent-mark)
 3. 并发预清理（CMS-concurrent-preclean）
@@ -23,7 +24,16 @@
 6. 并发重置（CMS-concurrent-reset）cms数据结构重新初始化，为下一次cms准备。
 
 
+CMS GC时出现promotion failed和concurrent mode failure,对于采用CMS进行旧生代GC的程序而言，   
+尤其要注意GC日志中是否有promotion failed和concurrent mode failure两种状况，当这两种状况出现时可能会触发Full GC。
+>
+1. promotion failed是在进行Minor GC时，survivor space放不下、对象只能放入旧生代，而此时旧生代也放不下造成的；
+2. concurrent mode failure是在执行CMS GC的过程中同时有对象要放入旧生代，而此时旧生代空间不足造成的。
 
 
-[CMS GC日志详细分析](http://blog.csdn.net/a417930422/article/details/16948933)   
-[JAVA垃圾收集器](http://blog.csdn.net/ffm83/article/category/2845293)
+
+1. [CMS GC日志详细分析](http://blog.csdn.net/a417930422/article/details/16948933)   
+2. [JAVA垃圾收集器](http://blog.csdn.net/ffm83/article/category/2845293)
+3. [一次CMS GC问题排查过程（理解原理+读懂GC日志）](http://itindex.net/detail/47030-cms-gc-%E9%97%AE%E9%A2%98)
+4. [讨论-JVM日志和参数的理解](http://hllvm.group.iteye.com/group/topic/34182)
+5. [JVM日志和参数的理解](http://hot66hot.iteye.com/blog/2075819)
