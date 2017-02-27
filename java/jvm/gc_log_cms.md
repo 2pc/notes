@@ -37,3 +37,4 @@ CMS GC时出现promotion failed和concurrent mode failure,对于采用CMS进行�
 3. [一次CMS GC问题排查过程（理解原理+读懂GC日志）](http://itindex.net/detail/47030-cms-gc-%E9%97%AE%E9%A2%98)
 4. [讨论-JVM日志和参数的理解](http://hllvm.group.iteye.com/group/topic/34182)
 5. [JVM日志和参数的理解](http://hot66hot.iteye.com/blog/2075819)
+6. [Java内存区域理解-初步了解](http://iamzhongyong.iteye.com/blog/1333100)
