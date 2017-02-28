@@ -126,6 +126,7 @@ private Map<TopicPartition, List<ConsumerRecord<K, V>>> pollOnce(long timeout) {
 
 ```
 与0.9.0.0的逻辑也差不多：
+>
 1. 新版本中第一步直接改名叫ensureCoordinatorReady/lookupCoordinator，看来的多直接，就想知道Coordinator(ip+port)，
 反正感觉比ensureCoordinatorKnown()/sendGroupMetadataRequest()
 2. 0.10.1.0中将1，2，3步 重新封装一个poll()中
