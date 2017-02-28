@@ -38,3 +38,4 @@ CMS GC时出现promotion failed和concurrent mode failure,对于采用CMS进行�
 4. [讨论-JVM日志和参数的理解](http://hllvm.group.iteye.com/group/topic/34182)
 5. [JVM日志和参数的理解](http://hot66hot.iteye.com/blog/2075819)
 6. [Java内存区域理解-初步了解](http://iamzhongyong.iteye.com/blog/1333100)
+7. [了解 CMS 垃圾回收日志](http://ifeve.com/jvm-cms-log/)
