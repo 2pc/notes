@@ -11,3 +11,7 @@ linux
 ```
 java -cp xxx.jar[:]yyy.jar x.y.z.mainClass
 ```
+
+```
+-Djava.ext.dirs
+```
