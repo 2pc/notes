@@ -41,31 +41,45 @@ java -cp ../zookeeper-3.4.6.jar:./slf4j-api-1.6.1.jar org.apache.zookeeper.serve
 snap格式
 
 ```
+ZNode Details (count=4392):
 ----
-/photos
-  cZxid = 0x000003000a302e
-  ctime = Wed Sep 07 19:24:25 CST 2016
-  mZxid = 0x000003000a302e
-  mtime = Wed Sep 07 19:24:25 CST 2016
-  pZxid = 0x000003000a302f
-  cversion = 1
+/
+  cZxid = 0x00000000000000
+  ctime = Thu Jan 01 07:00:00 CST 1970
+  mZxid = 0x00000000000000
+  mtime = Thu Jan 01 07:00:00 CST 1970
+  pZxid = 0x000008000bbf4d
+  cversion = 99
+  dataVersion = 0
+  aclVersion = 0
+  ephemeralOwner = 0x00000000000000
+  dataLength = 0
+----
+/test
+  cZxid = 0x00000200086650
+  ctime = Tue Jun 28 10:52:57 CST 2016
+  mZxid = 0x00000200086650
+  mtime = Tue Jun 28 10:52:57 CST 2016
+  pZxid = 0x000008000773d8
+  cversion = 4
   dataVersion = 0
   aclVersion = 0
   ephemeralOwner = 0x00000000000000
   no data
 ----
-/photos/kiev
-  cZxid = 0x000003000a302f
-  ctime = Wed Sep 07 19:24:25 CST 2016
-  mZxid = 0x000003000a302f
-  mtime = Wed Sep 07 19:24:25 CST 2016
-  pZxid = 0x000003000a3030
-  cversion = 1
-  dataVersion = 0
-  aclVersion = 0
-  ephemeralOwner = 0x00000000000000
-  no data
-----
+
+Session Details (sid, timeout, ephemeralCount):
+0x358ee5ec09715bb, 30000, 1
+0x259297feac578f6, 30000, 2
+0x35803bde8bc054a, 30000, 57
+0x358ee5ec09715bc, 30000, 0
+0x15803dfcb1a4039, 30000, 1
+0x358ee5ec0973d60, 30000, 0
+0x258048cae2304bd, 30000, 0
+0x258048cae2304bc, 30000, 0
+0x25824403229001b, 30000, 1
+0x258ee81fb5d0821, 30000, 0
+0x25824403229001a, 30000, 0
 ```
 
 
