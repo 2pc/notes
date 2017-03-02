@@ -38,7 +38,10 @@ file:/usr/lib/jvm/jdk1.7.0_21/jre/classes
 #### App ClassLoader
 
 
+### 双亲委托 
 
+>
+1. 自底向上检查类是否已经加载
+2. 自顶向下尝试加载类
 
-
-
+[深入分析Java ClassLoader原理](http://blog.csdn.net/xyang81/article/details/7292380)
