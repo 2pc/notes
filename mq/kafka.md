@@ -2,7 +2,8 @@ consumer
 
 0.9开始重新设计了Consumer Client Re-Design,引入中心的协调器Coordinator，解决Split Brain和Herd等问题
 
-[Consumer Client Re-Design](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)
+[Consumer Client Re-Design](https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Client+Re-Design)   
+[KIP-98 - Exactly Once Delivery and Transactional Messaging](https://cwiki.apache.org/confluence/display/KAFKA/KIP-98+-+Exactly+Once+Delivery+and+Transactional+Messaging#KIP-98-ExactlyOnceDeliveryandTransactionalMessaging-DataFlow)
 
 
 #### blog收集   
