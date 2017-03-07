@@ -13,3 +13,15 @@ jvm 参数
 11. -XX:+UseParallelOldGC：年老代垃圾收集方式为并行收集(Parallel Compacting)。
 12. -XX:MaxGCPauseMillis：每次年轻代垃圾回收的最长时间(最大暂停时间)，如果无法满足此时间,JVM会自动调整年轻代大小,以满足此值。
 13. -XX:+ScavengeBeforeFullGC：Full GC前调用YGC,默认是true。
+
+
+
+### -XX:NewRatio  年轻代(包括Eden和两个Survivor区)与年老代的比值(除去持久代)
+
+-XX:NewRatio=4表示年轻代与年老代所占比值为1:4,年轻代占整个堆栈的1/5
+Xms=Xmx并且设置了Xmn的情况下，该参数不需要进行设置
+
+### -XX:SurvivorRatio Eden区与Survivor区的大小比值
+
+设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10
+
