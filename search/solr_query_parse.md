@@ -30,3 +30,5 @@ SearchHandler>handleRequestBody()-->QueryComponent.process-->SolrIndexSearcher.s
 6. [Solr4.8.0源码分析(5)之查询流程分析总述](http://www.cnblogs.com/rcfeng/p/3923534.html)
 7. [结合源码分析Solr&Lucene查询打分的工作流程](http://blog.csdn.net/yangbutao/article/details/9768317)
 8. [solr4.2 edismax查询方式评分计算](http://fwuwen.iteye.com/blog/1870943)
+9. [Solr dismax 源码详解以及使用方法](http://www.wxdl.cn/index/solr-dismax.html)
+10. [Solr 的edismax与dismax比较与分析](http://www.linuxidc.com/Linux/2012-10/72373.htm)
