@@ -177,6 +177,7 @@ private final ConcurrentLinkedQueue<OffsetCommitCompletion> completedOffsetCommi
 ```
 我蒙！ 没有线程去定期(autoCommitIntervalMs)调度?
 最终发现maybeAutoCommitOffsetsAsync()与maybeAutoCommitOffsetsNow()，而
+>
 1. maybeAutoCommitOffsetsNow()是在KafkaConsumer.assign()里调用的
 2. maybeAutoCommitOffsetsAsync()是在poll里，这点与delayedTasks有点像
 
