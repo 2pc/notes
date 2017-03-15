@@ -19,3 +19,8 @@ consumer
 #### 问题收集
 [kafka消息阻塞](http://jis117.iteye.com/blog/2279519)   
 [总结kafka的consumer消费能力很低的情况下的处理方案](http://www.jianshu.com/p/4e00dff97f39)
+
+#### 官方链接
+[Kafka Design](https://cwiki.apache.org/confluence/display/KAFKA/Index)   
+[Kafka KIPs](https://cwiki.apache.org/confluence/display/KAFKA/Kafka+Improvement+Proposals)   
+[Kafka bug列表](https://issues.apache.org/jira/browse/KAFKA-4276?jql=project%20%3D%20KAFKA%20AND%20labels%20%3D%20newbie%20AND%20status%20%3D%20Open)
