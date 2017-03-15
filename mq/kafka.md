@@ -18,3 +18,4 @@ consumer
 
 #### 问题收集
 [kafka消息阻塞](http://jis117.iteye.com/blog/2279519)
+[总结kafka的consumer消费能力很低的情况下的处理方案](http://www.jianshu.com/p/4e00dff97f39)
