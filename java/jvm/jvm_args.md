@@ -23,5 +23,8 @@ Xms=Xmx并且设置了Xmn的情况下，该参数不需要进行设置
 
 ### -XX:SurvivorRatio Eden区与Survivor区的大小比值
 
-设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10
+设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10   
+
+
+[ 【总结】JVM模型](http://blog.csdn.net/zhiguozhu/article/details/50517467)
 
