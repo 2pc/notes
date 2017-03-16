@@ -5,3 +5,5 @@
 3. [点评pigeon的实现DefaultThreadPool](https://github.com/dianping/pigeon/blob/master/pigeon-common/src/main/java/com/dianping/pigeon/threadpool/DefaultThreadPool.java)
 
 4. [dubbo实现](https://github.com/alibaba/dubbo/tree/master/dubbo-common/src/main/java/com/alibaba/dubbo/common/threadpool)
+
+5. [Tomcat线程池详解](http://blog.csdn.net/wxq544483342/article/details/53162311)
