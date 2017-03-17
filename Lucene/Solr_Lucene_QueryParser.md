@@ -66,7 +66,7 @@ int conj, mods;
 ```
 >
 1. Modifiers()返回修饰符号"+"或"-"
-2. Conjunction() 返回关联关系
+2. Conjunction() 返回关联关系(AND OR )
 3. Clause生成一个字查询
 4. addClause多个clause生成一个BooleanQuery
 
@@ -116,3 +116,6 @@ static final int MOD_NONE    = 0;
 static final int MOD_NOT     = 10;
 static final int MOD_REQ     = 11;
 ```
+
+[Lucene学习总结之八：Lucene的查询语法，JavaCC及QueryParser(2)](http://forfuture1978.iteye.com/blog/661680)
+[lucene源码分析—QueryParser的parse函数](http://blog.csdn.net/conansonic/article/details/52021137)
