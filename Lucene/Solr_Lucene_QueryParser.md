@@ -117,5 +117,6 @@ static final int MOD_NOT     = 10;
 static final int MOD_REQ     = 11;
 ```
 
-[Lucene学习总结之八：Lucene的查询语法，JavaCC及QueryParser(2)](http://forfuture1978.iteye.com/blog/661680)
-[lucene源码分析—QueryParser的parse函数](http://blog.csdn.net/conansonic/article/details/52021137)
+[Lucene学习总结之八：Lucene的查询语法，JavaCC及QueryParser(2)](http://forfuture1978.iteye.com/blog/661680)   
+[lucene源码分析—QueryParser的parse函数](http://blog.csdn.net/conansonic/article/details/52021137)   
+[Lucene学习总结之八：Lucene的查询语法，JavaCC及QueryParser(1)](http://www.cnblogs.com/forfuture1978/archive/2010/05/08/1730200.html)
