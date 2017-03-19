@@ -296,7 +296,7 @@ private List<DiscoveryNode> sortedMasterNodes(Iterable<DiscoveryNode> nodes) {
             it.remove();
         }
     }
-    //内省排序，总节点数<THRESHOLD(20)
+    //内省排序，总节点数THRESHOLD < 20，insertionSort; else heapsort
     CollectionUtil.introSort(possibleNodes, nodeComparator);
     return possibleNodes;
 }
