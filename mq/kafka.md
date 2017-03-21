@@ -16,7 +16,7 @@ consumer
 [kafka offset manager源码分析(1) offset的commit](http://smartyml.com/2016/09/07/kafka%20offset%20manager%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90(1)%E4%B9%8Boffset%20commit/)   
 [devos](http://www.cnblogs.com/devos/category/582447.html)   
 [学习一下kafka](http://jianbeike.blogspot.com/2016/04/kafka.html)
-[kafka源码分析 (15)](http://flychao88.iteye.com/category/350737)
+[kafka源码分析 (15)](http://flychao88.iteye.com/category/350737)   
 [分布式消息队列RocketMQ与Kafka的18项差异之“拨乱反正”](http://blog.csdn.net/chunlongyu/article/category/6638499)
 
 #### 问题收集
