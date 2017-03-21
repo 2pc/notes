@@ -1,6 +1,9 @@
 
-1. getLeafCollector()得到一个Collector
+org.elasticsearch.search.aggregations.bucket.terms.GlobalOrdinalsStringTermsAggregator
 
+
+1. getLeafCollector()得到一个Collector
+2. valuesSource为org.elasticsearch.search.aggregations.support.ValuesSource.Bytes.WithOrdinals.FieldData
 ```
 @Override
 public LeafBucketCollector getLeafCollector(LeafReaderContext ctx,
