@@ -11,3 +11,9 @@ update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_111/bin/j
 update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_111/bin/javac 300
 update-alternatives –config java
 ```
+
+#### mac
+
+```
+/usr/libexec/java_home -V  
+```
