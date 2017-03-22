@@ -1,2 +1,5 @@
 [JVM系列三:JVM参数设置、分析](http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)   
-[BabyDuncan-jvm](https://github.com/BabyDuncan/jvm)
+[BabyDuncan-jvm](https://github.com/BabyDuncan/jvm)   
+[JVM调优及参数设置](http://blog.csdn.net/snow_7/article/details/52291979)   
+[JVM 调优参数详解](http://yufenfei.iteye.com/blog/1746914)   
+[占小狼-JVM内存的那些事](http://www.jianshu.com/p/eaef248b5a2c)   
