@@ -10,6 +10,8 @@ echo $JAVA_HOME 明明是有的，怎么会没有呢。
 懒得搞了，直接改groovy源码，给个值写死算了。
 
 ```
+buildSrc/src/main/groovy/org/elasticsearch/gradle/BuildPlugin.groovy
+
 private static String findJavaHome() {
     String javaHome = System.getenv('JAVA_HOME')
     println "=================================================="
