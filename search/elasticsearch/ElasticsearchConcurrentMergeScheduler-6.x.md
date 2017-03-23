@@ -14,3 +14,5 @@ MergePolicyConfig
 
 
 MergeSchedulerConfig
+
+[ELK stack 中文指南](https://kibana.logstash.es/content/elasticsearch/principle/indexing-performance.html)
