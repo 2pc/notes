@@ -1,4 +1,26 @@
+J.U.C中的实现ThreadPoolExecutor 
+>
+* 当前线程数小于corePoolSize，直接执行addWorker方法创建线程   
+* offer到queue
+* queue满了，执行addWorker方法创建新的线程执行任务
 
+```
+int c = ctl.get();
+if (workerCountOf(c) < corePoolSize) {
+    if (addWorker(command, true))
+        return;
+    c = ctl.get();
+}
+if (isRunning(c) && workQueue.offer(command)) {
+    int recheck = ctl.get();
+    if (! isRunning(recheck) && remove(command))
+        reject(command);
+    else if (workerCountOf(recheck) == 0)
+        addWorker(null, false);
+}
+else if (!addWorker(command, false))
+    reject(command);
+```
 1. [Tomcat的实现StandardThreadExecutor](https://github.com/apache/tomcat/blob/trunk/java/org/apache/catalina/core/StandardThreadExecutor.java) [Tomcat中ThreadPoolExecutor实现](https://github.com/apache/tomcat/blob/trunk/java/org/apache/tomcat/util/threads/ThreadPoolExecutor.java)
 2. motan参考了tomcat的StandardThreadExecutor[motan的实现StandardThreadExecutor](https://github.com/weibocom/motan/blob/master/motan-transport-netty/src/main/java/com/weibo/api/motan/transport/netty/StandardThreadExecutor.java)
 
