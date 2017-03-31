@@ -4,7 +4,7 @@
 
 跨语言支持
 
-*. Protocol Buffers
-*. Thrift
-*. Avro
-*. MessagePack
+*. Protocol Buffers   
+*. Thrift   
+*. Avro   
+*.MessagePack
