@@ -10,4 +10,6 @@
 []()
 [深入解析MySQL replication协议](http://siddontang.com/2015/02/02/mysql-replication-protocol/)
 [同步 MySQL 数据到 Elasticsearch](http://www.jianshu.com/p/96c7858b580f)
+[mysql 实时协议解析 第二版 (基于kafka)](http://blog.csdn.net/hackerwin7/article/details/42713271)
+[Mysql日志抽取与解析](http://blog.csdn.net/hackerwin7/article/details/39896173)
 
