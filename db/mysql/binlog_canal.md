@@ -17,3 +17,9 @@
 [使用canal进行mysql数据同步到Redis](http://blog.csdn.net/tb3039450/article/details/53928351)
 [搭建并运行基于HA模式的canal](http://blog.csdn.net/hackerwin7/article/details/38044327)
 
+
+###  字段类型处理
+
+1. canal 定义在LogEvent类中（1-19 245-255）
+2. maxwell  相关的主要在ColumnDef中，内部实际用的google项目的代码 类型主要MySQLConstants类（1-19，246-255）
+
