@@ -33,5 +33,38 @@ mysql> set global validate_password_policy=0;
 mysql> set global validate_password_length=0;
 ```
 
+### maxwell
+
+#### package
+ 
+```
+git clone https://github.com/zendesk/maxwell
+cd maxwell
+make package
+```
+#### mysql user 
+
+```
+CREATE USER maxwell IDENTIFIED BY 'maxwell';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'maxwell'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'maxwell'@'%'      
+FLUSH PRIVILEGES;
+
+####
+GRANT ALL on maxwell.* to 'maxwell'@'%' identified by 'XXXXXX';
+GRANT SELECT, REPLICATION CLIENT, REPLICATION SLAVE on *.* to 'maxwell'@'%';
+```
+#### STDOUT producer
+
+```
+bin/maxwell --user='maxwell' --password='XXXXXX' --host='127.0.0.1' --producer=stdout
+```
+
+#### Kafka producer
+
+```
+bin/maxwell --user='maxwell' --password='XXXXXX' --host='127.0.0.1' \
+   --producer=kafka --kafka.bootstrap.servers=localhost:9092
+```
 
 
