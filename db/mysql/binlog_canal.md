@@ -23,3 +23,15 @@
 1. canal 定义在LogEvent类中（1-19 245-255）
 2. maxwell  相关的主要在ColumnDef中，内部实际用的google项目的代码 类型主要MySQLConstants类（1-19，246-255）
 
+### Mysql5.7
+
+#### Your password does not satisfy the current policy requirements
+
+```
+mysql> SHOW VARIABLES LIKE 'validate_password%';
+mysql> set global validate_password_policy=0;
+mysql> set global validate_password_length=0;
+```
+
+
+
