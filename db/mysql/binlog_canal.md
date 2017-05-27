@@ -8,8 +8,8 @@
 
 ### binlog
 
-[]()   
-[]()   
+[MySQL的binlog数据如何查看](http://blog.chinaunix.net/uid-16844903-id-3896711.html)   
+[mysql 利用binlog增量备份，还原实例](http://blog.51yip.com/mysql/1042.html)   
 [深入解析MySQL replication协议](http://siddontang.com/2015/02/02/mysql-replication-protocol/)   
 [同步 MySQL 数据到 Elasticsearch](http://www.jianshu.com/p/96c7858b580f)   
 [mysql 实时协议解析 第二版 (基于kafka)](http://blog.csdn.net/hackerwin7/article/details/42713271)   
