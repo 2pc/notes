@@ -16,6 +16,27 @@ mysql> show variables like 'general_log_file'
 mysql> show variables like 'general_log_file';
 mysql> show binlog events;
 ```
+### 登录到mysql查看binlog
+只查看第一个binlog文件的内容
+
+```
+show binlog events;
+```
+查看指定binlog文件的内容
+
+```
+show binlog events in 'mysql-bin.000002';
+```
+查看当前正在写入的binlog文件
+
+```
+show master status\G
+```
+获取binlog文件列表
+
+```
+show binary logs;
+```
 
 ### 用mysqlbinlog工具查看
 注意:
