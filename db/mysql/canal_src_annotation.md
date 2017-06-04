@@ -38,4 +38,6 @@ SessionHandler.messageReceived-->embeddedServer.ack-->canalInstance.getMetaManag
 ```
 metaManager主要有file,memory,zk等方式以及衍生的组合方式
 
+Cluster模式Client高可用模式
+
 
