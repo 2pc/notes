@@ -12,3 +12,5 @@ git push origin master
 ```
 git remote set-url origin https://2pc@github.com/2pc/kcws.git
 ```
+
+[Git 的origin和master分析](http://www.cnblogs.com/0616--ataozhijia/p/4165444.html)
