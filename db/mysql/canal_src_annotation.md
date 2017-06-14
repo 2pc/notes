@@ -155,6 +155,78 @@ public static LogPosition createPosition(Event event, boolean included) {
 }
 ```
 
+### CanalInstanceWithSpring  基于spring容器启动canal实例
+
+```
+CanalController(initGlobalConfig(new CanalInstanceGenerator(Spring))-->embededCanalServer.setCanalInstanceGenerator(instanceGenerator))-->ServerRunningListener-->embededCanalServer.start(destination)-->canalInstance.start();
+```
+canalInstance的start()方法中启动相关组件
+
+>
+1. metaManager 
+
+```
+public void start() {
+    logger.info("start CannalInstance for {}-{} ", new Object[] { 1, destination });
+    super.start();
+}
+//AbstractCanalInstance.java
+public void start() {
+    super.start();
+    if (!metaManager.isStart()) {
+        metaManager.start();
+    }
+
+    if (!alarmHandler.isStart()) {
+        alarmHandler.start();
+    }
+
+    if (!eventStore.isStart()) {
+        eventStore.start();
+    }
+
+    if (!eventSink.isStart()) {
+        eventSink.start();
+    }
+
+    if (!eventParser.isStart()) {
+        beforeStartEventParser(eventParser);
+        eventParser.start();
+        afterStartEventParser(eventParser);
+    }
+    logger.info("start successful....");
+}
+```
+看下CanalInstanceWithSpring的配置文件
+>
+1. eventParser是MysqlEventParser
+2. eventSink是EntryEventSink
+3. eventStore是MemoryEventStoreWithBuffer
+4. metaManager是PeriodMixedMetaManager，内部使用的PeriodMixedMetaManager。定时刷新到zk
+5. alarmHandler是LogAlarmHandler
+
+```
+<bean id="instance" class="com.alibaba.otter.canal.instance.spring.CanalInstanceWithSpring">
+        <property name="destination" value="${canal.instance.destination}" />
+        <property name="eventParser">
+                <ref local="eventParser" />
+        </property>
+        <property name="eventSink">
+                <ref local="eventSink" />
+        </property>
+        <property name="eventStore">
+                <ref local="eventStore" />
+        </property>
+        <property name="metaManager">
+                <ref local="metaManager" />
+        </property>
+        <property name="alarmHandler">
+                <ref local="alarmHandler" />
+        </property>
+</bean>
+```
+
+
 
 
 
