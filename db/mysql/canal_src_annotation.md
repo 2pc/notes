@@ -202,7 +202,7 @@ public void start() {
 1. eventParser是MysqlEventParser
 2. eventSink是EntryEventSink
 3. eventStore是MemoryEventStoreWithBuffer
-4. metaManager是PeriodMixedMetaManager，内部使用的PeriodMixedMetaManager。定时刷新到zk
+4. metaManager是PeriodMixedMetaManager，这个继承自MemoryMetaManager，内部还有一个ZooKeeperMetaManager。会定时刷新到zk；其实PeriodMixedMetaManager，MemoryMetaManager与ooKeeperMetaManager都实现了CanalMetaManager
 5. alarmHandler是LogAlarmHandler
 
 ```
