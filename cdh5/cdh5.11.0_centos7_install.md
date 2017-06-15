@@ -1,10 +1,36 @@
 
-初始化数据库   
+初始化cm数据库   
 参数格式：数据库类型 数据库名称 -h数据库主机名 -u数据库用户名 -p数据库密码--scm-host cmserver主机名 scm scm scm
 
 ``` 
 /opt/cm-5.11.0/share/cmf/schema/scm_prepare_database.sh mysql cm -hnode5 -uroot -p123456 --scm-host node5 scm scm scm 
 ```
+
+CM基于mysql的db配置
+
+```
+cat /opt/cm-5.11.0/etc/cloudera-scm-server/db.properties|grep -v '#'
+com.cloudera.cmf.db.type=mysql
+com.cloudera.cmf.db.host=localhost
+com.cloudera.cmf.db.name=cm
+com.cloudera.cmf.db.user=scm
+com.cloudera.cmf.db.setupType=EXTERNAL
+com.cloudera.cmf.db.password=scm
+```
+
+相关数据库，表建立，权限等
+
+```
+create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+#GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%'; 
+GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%' IDENTIFIED BY 'hive' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'hue'@'%' IDENTIFIED BY 'hue' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' IDENTIFIED BY 'oozie' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
 
 
 ```
