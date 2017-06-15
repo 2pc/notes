@@ -26,6 +26,8 @@ ValueError: too many values to unpack
 
 解决方法： 修改/opt/cm-5.11.0/lib64/cmf/agent/build/env/lib/python2.7/site-packages/cmf-5.11.0-py2.7.egg/cmf/client_configs.py的_parse_alternatives()函数相关代码
 
+ref [Linux7 下Hadoop集群用户管理方案之五 安装Hadoop集群遇到的坑](http://blog.csdn.net/line_aijava/article/details/71374391)
+
 ```
 436   def _parse_alternatives(self, name, output):
 437     """
@@ -92,7 +94,7 @@ ValueError: too many values to unpack
 解决方法
 
 ```
- /opt/cm-5.11.0/lib/cloudera-scm-agent/cm_guid 
+ rm -rf  /opt/cm-5.11.0/lib/cloudera-scm-agent/cm_guid 
 ```
 
 
