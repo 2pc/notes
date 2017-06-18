@@ -4,6 +4,11 @@
 [Canal & Otter 的一些注意事项和最佳实践](https://my.oschina.net/dxqr/blog/524795)   
 [Maxwell's daemon, a mysql-to-json kafka producer](https://github.com/zendesk/maxwell)   
 [maxwells-daemon.io](http://maxwells-daemon.io/)
+[实时抓取MySQL的更新数据到Hadoop](http://bigdatadecode.club/%E5%AE%9E%E6%97%B6%E6%8A%93%E5%8F%96MySQL%E7%9A%84%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E5%88%B0Hadoop.html)
+[ElasticSearch + Canal 开发千万级的实时搜索系统](http://www.cnblogs.com/chanshuyi/p/6669006.html)
+[Elasticsearch环境搭建和river数据导入（四）](http://xargin.com/elasticsearchhuan-jing-da-jian-he-rivershu-ju-dao-ru-si/)
+[binlog-river-es](https://github.com/cch123/binlog-river-es/blob/master/binlog_ops.go)
+[如何基于日志，同步实现数据的一致性和实时抽取?](http://weibo.com/ttarticle/p/show?id=2309351002704055141002156936)
 
 
 ### binlog
