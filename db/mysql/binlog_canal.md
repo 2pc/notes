@@ -19,9 +19,9 @@
 [同步 MySQL 数据到 Elasticsearch](http://www.jianshu.com/p/96c7858b580f)   
 [mysql 实时协议解析 第二版 (基于kafka)](http://blog.csdn.net/hackerwin7/article/details/42713271)   
 [Mysql日志抽取与解析](http://blog.csdn.net/hackerwin7/article/details/39896173)   
-[使用canal进行mysql数据同步到Redis](http://blog.csdn.net/tb3039450/article/details/53928351)
-[搭建并运行基于HA模式的canal](http://blog.csdn.net/hackerwin7/article/details/38044327)
-[canal源码分析系列——ErosaConnection分析](https://my.oschina.net/ywbrj042/blog/646389)
+[使用canal进行mysql数据同步到Redis](http://blog.csdn.net/tb3039450/article/details/53928351)   
+[搭建并运行基于HA模式的canal](http://blog.csdn.net/hackerwin7/article/details/38044327)   
+[canal源码分析系列——ErosaConnection分析](https://my.oschina.net/ywbrj042/blog/646389)   
 [深入理解otter](https://wenku.baidu.com/view/930a5723227916888586d70b.html)
 
 
