@@ -1,25 +1,36 @@
-```
-2017-05-27 16:53:34.167 [destination = example , address = /127.0.0.1:3306 , EventParser] INFO  c.a.otter.canal.parse.inbound.mysql.MysqlConnection - COM_BINLOG_DUMP with position:BinlogDumpCommandPacket[binlogPosition=1199597,slaveServerId=1234,binlogFileName=mysql-bin.000001,command=18]
-2017-05-27 16:53:34.168 [destination = example , address = /127.0.0.1:3306 , EventParser] WARN  c.a.otter.canal.parse.inbound.mysql.MysqlEventParser - ERROR ## parse this event has an error , last position : [mysql-bin.000001,1199597]
-java.lang.NullPointerException: null
-	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3$1.sink(AbstractEventParser.java:178) ~[canal.parse-1.0.25-SNAPSHOT.jar:na]
-	at com.alibaba.otter.canal.parse.inbound.mysql.MysqlConnection.dump(MysqlConnection.java:130) [canal.parse-1.0.25-SNAPSHOT.jar:na]
-	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3.run(AbstractEventParser.java:210) [canal.parse-1.0.25-SNAPSHOT.jar:na]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-2017-05-27 16:53:34.168 [destination = example , address = /127.0.0.1:3306 , EventParser] ERROR c.a.otter.canal.parse.inbound.mysql.MysqlEventParser - dump address /127.0.0.1:3306 has an error, retrying. caused by 
-com.alibaba.otter.canal.parse.exception.CanalParseException: java.lang.NullPointerException
-Caused by: java.lang.NullPointerException: null
-	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3$1.sink(AbstractEventParser.java:178) ~[canal.parse-1.0.25-SNAPSHOT.jar:na]
-	at com.alibaba.otter.canal.parse.inbound.mysql.MysqlConnection.dump(MysqlConnection.java:130) ~[canal.parse-1.0.25-SNAPSHOT.jar:na]
-	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3.run(AbstractEventParser.java:210) ~[canal.parse-1.0.25-SNAPSHOT.jar:na]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-2017-05-27 16:53:34.169 [destination = example , address = /127.0.0.1:3306 , EventParser] ERROR com.alibaba.otter.canal.common.alarm.LogAlarmHandler - destination:example[com.alibaba.otter.canal.parse.exception.CanalParseException: java.lang.NullPointerException
-Caused by: java.lang.NullPointerException
-	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3$1.sink(AbstractEventParser.java:178)
-	at com.alibaba.otter.canal.parse.inbound.mysql.MysqlConnection.dump(MysqlConnection.java:130)
-	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3.run(AbstractEventParser.java:210)
-	at java.lang.Thread.run(Thread.java:745)
-]
-2017-05-27 16:53:34.169 [destination = example , address = /127.0.0.1:3306 , EventParser] INFO  c.alibaba.otter.canal.parse.driver.mysql.MysqlConnector - disConnect MysqlConnection to /127.0.0.1:3306...
-2017-05-27 16:53:34.169 [destination = example , address = /127.0.0.1:3306 , EventParser] INFO  c.alibaba.otter.canal.pars
-```
+###  配置项说明
+#### canal.consumer.destination=example
+描述：canal server destination
+示例：canal.consumer.destination=example
+
+#### canal.consumer.zkserver
+描述：canal server的zk地址
+示例：canal.consumer.zkserver=172.28.3.169:2181,172.28.3.170:2181
+
+#### canal.kafka.server
+描述：canal 接收canal消息的kafka地址
+示例：canal.kafka.server=172.28.3.169:9092,172.28.3.170:9092
+
+#### canal.kafka.topic
+描述：接受canal消息的topic
+示例：canal.kafka.topic=canal
+当配置为database或者table时，表示依据database或者table名动态生成topic
+
+#### canal.producer.mode
+描述： canal  的方式，kafka／local  kafka或者本地日志方式
+示例：canal.producer.mode=kafka
+
+#### canal client filter
+描述：需要过滤的数据(数据库，表)
+示例：canal.consumer.filter=test\.xdual,test\.xdual1,
+
+#### canal.data.format
+描述：是否保留canal 原有格式，
+示例：canal.data.format=canal
+
+#### canal.kafka.key.type
+描述：patition 对应的key
+示例：canal.kafka.key.type=id
+1.  当为database,table 表示按database,table 分区
+2.  当为pks 时，所有主键组合成 分区的key
+3.   其他，表示指定pk字段分区，多个 主键用","分割
