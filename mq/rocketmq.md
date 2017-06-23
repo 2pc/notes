@@ -6,6 +6,7 @@
 3. [RocketMQ深度解析](http://blog.csdn.net/chunlongyu/article/category/6638499)
 4. [事务消息一个版本实现](https://github.com/beston123/Tarzan)
 5. [对事务消息有兴趣的-](http://www.yunai.me/RocketMQ/message-transaction/)[芋艿V的博客](http://www.yunai.me)
+6. [集成了事务消息到RMQ4.0版](https://github.com/binzhaomobile/incubator-rocketmq/tree/release-4.0.0-incubating)
 
 如何区分consumer
 
