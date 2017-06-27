@@ -20,8 +20,8 @@ git remote set-url origin https://2pc@github.com/2pc/kcws.git
 #### global config
 
 ```
-git config global user.name youname
-git config global user.email yourmail
+git config --global user.name youname
+git config --global user.email yourmail
 
 ```
 
