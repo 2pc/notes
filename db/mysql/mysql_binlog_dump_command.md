@@ -67,5 +67,9 @@ mysqlbinlog –base64-output=DECODE-ROWS -v -d 库名 二进制文件
 ```
 mysqlbinlog -u username -p password -hl-db1.dba.beta.cn6.qunar.com -P3306 \
 --read-from-remote-server --start-datetime='2013-09-10 23:00:00' --stop-datetime='2013-09-10 23:30:00' mysql-bin.000001 > t.binlog
-``
+```
+
+```
+mysqlbinlog  --no-defaults /var/lib/mysql/mysql-bin.000001
+```
 
