@@ -37,3 +37,10 @@ my-replicated-topic4
 test
 test6
 ```
+
+修改partition 数目
+
+```
+bin/kafka-topics.sh  --zookeeper 172.28.3.169:2181,172.28.3.170:2181/kafkaroot  --alter --partition 20   --topic canal
+```
+
