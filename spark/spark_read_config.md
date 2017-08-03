@@ -3,7 +3,7 @@
 ```
 --files config.properties,meta.xml 
 ```
-main读取
+main()读取
 
 ```
 String configFile ="config.properties";
