@@ -136,6 +136,6 @@ CREATE TABLE `yyhb_contract_info` (
  [Restoring Individual Tables](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/restoring_individual_tables_ibk.html)   
  [Transporting tablespace from MySQL 5.6 to MySQL 5.7 (case study)](https://www.percona.com/blog/2015/12/01/how-to-transport-tablespace-from-mysql-5-6-to-mysql-5-7/)   
  [mysql5.6新功能transportable tablespaces（可传输表空间）进行远程备份数据库](http://blog.csdn.net/xiaoyi23000/article/details/53150776)   
- [Partial backup 备份指定表/库](http://blog.csdn.net/ashic/article/details/52280967)
- 
- [MySQL5.6下使用xtrabackup部分备份恢复到MySQL5.7](http://www.cnblogs.com/Bccd/p/5939729.html)
+ [Partial backup 备份指定表/库](http://blog.csdn.net/ashic/article/details/52280967)   
+ [MySQL5.6下使用xtrabackup部分备份恢复到MySQL5.7](http://www.cnblogs.com/Bccd/p/5939729.html)   
+ [Percona Xtrabackup 2.4 恢复指定表](http://m.blog.itpub.net/26506993/viewspace-2123281/)
