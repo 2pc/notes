@@ -13,6 +13,7 @@ mv /var/lib/mysql /var/lib/mysqlbak2
 service mysqld stop
 # 尝试删除所有的表，最后只剩下information_schema提示没权限删除
 rm -rf /var/lib/mysql
+innobackupex --apply-log full/2017-08-25_15-10-50/
 innobackupex --copy-back  full/2017-08-25_15-10-50/
 chown -R mysql:mysql  /var/lib/mysql
 service mysqld start
