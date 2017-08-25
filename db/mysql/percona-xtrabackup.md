@@ -1,8 +1,24 @@
 
 
-#### 全量备份
+### 全量备份整个DB
 
-备份
+全量三步即可[The Backup Cycle - Full Backups](https://www.percona.com/doc/percona-xtrabackup/2.4/innobackupex/innobackupex_script.html)   
+1. [Creating a Backup with innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.4/innobackupex/creating_a_backup_ibk.html)   
+2. [Preparing a Full Backup with innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.4/innobackupex/preparing_a_backup_ibk.html)   
+3. [Restoring a Full Backup with innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.4/innobackupex/restoring_a_backup_ibk.html)
+
+```
+innobackupex   --user=root  --password=123456 ./full
+mv /var/lib/mysql /var/lib/mysqlbak2
+service mysqld stop
+# 尝试删除所有的表，最后只剩下information_schema提示没权限删除
+rm -rf /var/lib/mysql
+innobackupex --copy-back  full/2017-08-25_15-10-50/
+chown -R mysql:mysql  /var/lib/mysql
+service mysqld start
+```
+
+### 备份与还原单个库
 ```
 innobackupex  --user=root  --password=123456  --databases=oel    ./full
 ```
@@ -30,6 +46,7 @@ chown -R mysql:mysql  /var/lib/mysql
 service mysqld restart
 ```
 
+### 备份还原多个库
 多个表, --databases中间空格隔开.
 
 ```
