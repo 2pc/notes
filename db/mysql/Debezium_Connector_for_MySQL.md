@@ -78,3 +78,8 @@ include.schema.changes=tr
 [2017-08-30 09:15:21,248] INFO Step 8: scanning contents of 4 tables while still in transaction (io.debezium.connector.mysql.SnapshotReader:383)
 [2017-08-30 09:15:21,347] INFO Step 8: - scanning table 'test.xdual' (1 of 4 tables) (io.debezium.connector.mysq
 ```
+
+扫了一眼
+关于snapshot居然有个坑[MySQL snapshotter is not guaranteed to give a consistent snapshot](https://issues.jboss.org/projects/DBZ/issues/DBZ-210?filter=allopenissues)
+
+参照mysqldump -single-transaction  -master-data修改snapshot逻辑  0.6版本才会fix
