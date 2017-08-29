@@ -1,4 +1,4 @@
-## 使用Debezium同步binlog至少kafka
+## 使用Debezium同步binlog至kafka
 
 ### 下载debezium解压
 
