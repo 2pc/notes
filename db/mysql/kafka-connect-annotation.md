@@ -79,7 +79,7 @@ public void start() {
 }
 ```
 
-在StandaloneHerder.java(https://github.com/apache/kafka/blob/trunk/connect/runtime/src/main/java/org/apache/kafka/connect/runtime/standalone/StandaloneHerder.java)的putConnectorConfig()调用了
+在[StandaloneHerder.java](https://github.com/apache/kafka/blob/trunk/connect/runtime/src/main/java/org/apache/kafka/connect/runtime/standalone/StandaloneHerder.java)的putConnectorConfig()调用了
 
 ```
 if (!startConnector(config)) {
