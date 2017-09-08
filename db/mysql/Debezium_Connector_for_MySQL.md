@@ -12,17 +12,18 @@ cp ../debezium-connector-mysql/*.jar ./libs/
 ### 配置mysql-connect
 
 ```
+name=inventory-connector
 connector.class=io.debezium.connector.mysql.MySqlConnector
-database.hostname=127.0.0.1
+database.hostname=172.28.3.170
 database.port=3306
 database.user=canal
 database.password=canal
 database.server.id=67777
-database.server.name=127.0.0.1:3306
+database.server.name=hhhhhhh
 database.whitelist=test
 database.history.kafka.bootstrap.servers=127.0.0.1:9092
 database.history.kafka.topic=dbhistory.fullfillment
-include.schema.changes=tr
+include.schema.changes=true
 ```
 
 ### standalone模式启动kafka-connect
