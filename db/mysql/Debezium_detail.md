@@ -11,3 +11,12 @@
 
 key基于primary或者unique key约束，
 
+###  模式
+
+snapshot.mode 
+
+1. initial
+2. when_needed
+3. never
+4. schema_only
+
