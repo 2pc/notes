@@ -84,3 +84,149 @@ include.schema.changes=true
 [MySQL snapshotter is not guaranteed to give a consistent snapshot](https://issues.jboss.org/projects/DBZ/issues/DBZ-210?filter=allopenissues)
 
 参照mysqldump -single-transaction  -master-data修改snapshot逻辑  0.6版本才会fix
+
+参考[mysqldump.c](https://bazaar.launchpad.net/~mysql/mysql-server/5.7/view/head:/client/mysqldump.c)文件
+
+mysqldump  -single-transaction  -master-data的执行顺序
+
+1.  执行FLUSH TABLES
+2.  执行FLUSH TABLES WITH READ LOCK
+3.  SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ
+4.  SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+5.  SHOW MASTER STATUS
+6.  UNLOCK TABLES
+
+main主流程
+
+```
+if (!path)
+    write_header(md_result_file, *argv);
+
+  if (opt_slave_data && do_stop_slave_sql(mysql))
+    goto err;
+
+  if ((opt_lock_all_tables || opt_master_data ||
+       (opt_single_transaction && flush_logs)) &&
+      do_flush_tables_read_lock(mysql))
+    goto err;
+
+  /*
+    Flush logs before starting transaction since
+    this causes implicit commit starting mysql-5.5.
+  */
+  if (opt_lock_all_tables || opt_master_data ||
+      (opt_single_transaction && flush_logs) ||
+      opt_delete_master_logs)
+  {
+    if (flush_logs || opt_delete_master_logs)
+    {
+      if (mysql_refresh(mysql, REFRESH_LOG))
+        goto err;
+      verbose_msg("-- main : logs flushed successfully!\n");
+    }
+
+    /* Not anymore! That would not be sensible. */
+    flush_logs= 0;
+  }
+
+  if (opt_delete_master_logs)
+  {
+    if (get_bin_log_name(mysql, bin_log_name, sizeof(bin_log_name)))
+      goto err;
+  }
+
+  if (opt_single_transaction && start_transaction(mysql))
+    goto err;
+
+  /* Add 'STOP SLAVE to beginning of dump */
+  if (opt_slave_apply && add_stop_slave())
+    goto err;
+
+
+  /* Process opt_set_gtid_purged and add SET @@GLOBAL.GTID_PURGED if required. */
+  if (process_set_gtid_purged(mysql))
+    goto err;
+
+
+  if (opt_master_data && do_show_master_status(mysql))
+    goto err;
+  if (opt_slave_data && do_show_slave_status(mysql))
+    goto err;
+  if (opt_single_transaction && do_unlock_tables(mysql)) /* unlock but no commit! */
+    goto err;
+
+  if (opt_alltspcs)
+    dump_all_tablespaces();
+
+  if (opt_alldbs)
+  {
+    if (!opt_alltspcs && !opt_notspcs)
+      dump_all_tablespaces();
+    dump_all_databases();
+  }
+```
+
+do_flush_tables_read_lock()里执行两次flush(FLUSH TABLES,FLUSH TABLES WITH READ LOCK)
+
+```
+static int do_flush_tables_read_lock(MYSQL *mysql_con)
+{
+  /*
+    We do first a FLUSH TABLES. If a long update is running, the FLUSH TABLES
+    will wait but will not stall the whole mysqld, and when the long update is
+    done the FLUSH TABLES WITH READ LOCK will start and succeed quickly. So,
+    FLUSH TABLES is to lower the probability of a stage where both mysqldump
+    and most client connections are stalled. Of course, if a second long
+    update starts between the two FLUSHes, we have that bad stall.
+  */
+  return
+    ( mysql_query_with_error_report(mysql_con, 0, 
+                                    ((opt_master_data != 0) ? 
+                                        "FLUSH /*!40101 LOCAL */ TABLES" : 
+                                        "FLUSH TABLES")) ||
+      mysql_query_with_error_report(mysql_con, 0,
+                                    "FLUSH TABLES WITH READ LOCK") );
+}
+```
+
+ 依据single_transaction transaction (SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ,START TRANSACTION /*!40100 WITH CONSISTENT SNAPSHOT */)
+ 
+ ```
+ static int start_transaction(MYSQL *mysql_con)
+{
+  verbose_msg("-- Starting transaction...\n");
+  /*
+    We use BEGIN for old servers. --single-transaction --master-data will fail
+    on old servers, but that's ok as it was already silently broken (it didn't
+    do a consistent read, so better tell people frankly, with the error).
+
+    We want the first consistent read to be used for all tables to dump so we
+    need the REPEATABLE READ level (not anything lower, for example READ
+    COMMITTED would give one new consistent read per dumped table).
+  */
+  if ((mysql_get_server_version(mysql_con) < 40100) && opt_master_data)
+  {
+    fprintf(stderr, "-- %s: the combination of --single-transaction and "
+            "--master-data requires a MySQL server version of at least 4.1 "
+            "(current server's version is %s). %s\n",
+            opt_force ? "Warning" : "Error",
+            mysql_con->server_version ? mysql_con->server_version : "unknown",
+            opt_force ? "Continuing due to --force, backup may not be "
+            "consistent across all tables!" : "Aborting.");
+    if (!opt_force)
+      exit(EX_MYSQLERR);
+  }
+
+  return (mysql_query_with_error_report(mysql_con, 0,
+                                        "SET SESSION TRANSACTION ISOLATION "
+                                        "LEVEL REPEATABLE READ") ||
+          mysql_query_with_error_report(mysql_con, 0,
+                                        "START TRANSACTION "
+                                        "/*!40100 WITH CONSISTENT SNAPSHOT */"));
+}
+
+ ```
+do_show_master_status
+
+
+
