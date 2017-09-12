@@ -229,4 +229,8 @@ static int do_flush_tables_read_lock(MYSQL *mysql_con)
 do_show_master_status
 
 
+### 一致性读，快照读
+
+RR  级别  start transacition  后的第一条查询语句
+或者 start transaction with consistent snapshot
 
