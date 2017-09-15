@@ -221,6 +221,8 @@ rest.port=20100
 offset.storage.file.filename=/tmp/connect.offsets
 ```
 
+日志文件config/connect-log4j.properties 
+
 
 
 
