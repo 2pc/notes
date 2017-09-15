@@ -214,6 +214,12 @@ valueAfter: Struct{ID=100,X=2017-09-14T16:47:43+08:00},key Struct{ID=100}
 
 ```
 
+tableSchema
+
+```
+{ key : {"name" : "b555533.test.xdual.Key", "type" : "STRUCT", "optional" : "false", "fields" : [{"name" : "ID", "index" : "0", "schema" : {"type" : "INT32", "optional" : "false"}}]}, value : {"name" : "b555533.test.xdual.Value", "type" : "STRUCT", "optional" : "true", "fields" : [{"name" : "ID", "index" : "0", "schema" : {"type" : "INT32", "optional" : "false"}}, {"name" : "X", "index" : "1", "schema" : {"name" : "io.debezium.time.ZonedTimestamp", "type" : "STRING", "optional" : "false", "version" : "1"}}]} }
+```
+
 启动多个connect,配置修改 config/connect-standalone.properties
 
 ```
