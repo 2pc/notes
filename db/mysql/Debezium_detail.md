@@ -214,6 +214,13 @@ valueAfter: Struct{ID=100,X=2017-09-14T16:47:43+08:00},key Struct{ID=100}
 
 ```
 
+启动多个connect,配置修改 config/connect-standalone.properties
+
+```
+rest.port=20100
+offset.storage.file.filename=/tmp/connect.offsets
+```
+
 
 
 
