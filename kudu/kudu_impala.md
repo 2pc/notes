@@ -1,4 +1,5 @@
 
+TBLPROPERTIES 设置
 
 ```
 CREATE TABLE various_encodings
