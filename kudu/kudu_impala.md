@@ -15,7 +15,7 @@ CREATE TABLE various_encodings
 ) PARTITION BY HASH(id) PARTITIONS 2 STORED AS KUDU TBLPROPERTIES ('kudu.num_tablet_replicas' = '1');
 ```
 
- [Managing Kudu](https://www.cloudera.com/documentation/enterprise/latest/topics/cm_mc_kudu_service.html#impala_dependency   
+ [Managing Kudu](https://www.cloudera.com/documentation/enterprise/latest/topics/cm_mc_kudu_service.html#impala_dependency)    
  [Using Impala to Query Kudu Tables](https://www.cloudera.com/documentation/enterprise/5-11-x/topics/impala_kudu.html#kudu_benefits)
  [Installing Kudu](https://www.cloudera.com/documentation/enterprise/5-11-x/topics/kudu_install_cm.html)   
  [Install Kudu Using Parcels-5-11-x](https://www.cloudera.com/documentation/enterprise/5-11-x/topics/kudu_install_cm.html#install_parcels)
