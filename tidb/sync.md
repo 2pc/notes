@@ -19,7 +19,7 @@ binlog-gtid = ""
 指定test库的两个表tidb,xdual5同步,sharding没用过
 
  ```
- ]# cat config.toml |grep -v '#'
+ # cat config.toml 
 ilog-level = "info"
 
 server-id = 101
@@ -55,3 +55,10 @@ user = "canal"
 password = "canal"
 port = 4000
  ```
+ 
+同步
+
+```
+./bin/syncer -config config.toml
+```
+ 
