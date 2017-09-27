@@ -20,7 +20,7 @@
 
 ### [Cells (individual values)](http://kudu.apache.org/docs/known_issues.html#_cells_individual_values)
 
-编码与压缩之前，单个cell最大64kb,
+1. 编码与压缩之前，单个cell最大64kb,
 
 ### [Other usage limitations](http://kudu.apache.org/docs/known_issues.html#_other_usage_limitations)
 
@@ -45,6 +45,28 @@
 3. 不支持滚动重启
 
 ### [Server management](http://kudu.apache.org/docs/known_issues.html#_server_management)
+
+1. 生产环境应该至少给 tablet servers分配4G 内存，16G以上比较理想
+2. Write ahead logs (WAL) can only be stored on one disk.
+3. 不能容忍磁盘故障，一旦检测到磁盘故障会导致tablets servers crash
+4. 数据目录无法 添加/删除
+5. Tablet servers的ip地址与端口不能改变
+6. 严格依赖NTP服务同步，可导致Kudu masters and tablet servers crash
+7. 目前release版本的Kudu只测试过NTP时间同步服务，其他的时间同步服务如Chrony可能不起作用
+
+### [Scale](http://kudu.apache.org/docs/known_issues.html#_scale)
+
+1. 推荐最多100个tablet servers
+2. 推荐最多3个master
+3. 推荐存储数据： 复制压缩后单个tablet server 8TB
+4. 每个tablet server推荐最多2000个tablets
+5. 每个tablet server上单个table的tablets数量最大60
+
+
+
+
+
+
 
 
 1. 300 columns
