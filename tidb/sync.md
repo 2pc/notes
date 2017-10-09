@@ -61,4 +61,6 @@ port = 4000
 ```
 ./bin/syncer -config config.toml
 ```
+
+skip-sqls: 基于前缀匹配？
  
