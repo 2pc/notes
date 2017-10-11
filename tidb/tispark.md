@@ -12,3 +12,8 @@ scala>  ti.tidbMapDatabase("test");
 
 scala> spark.sql("select count(*) from tidb").show
 ```
+
+
+### tispark-sql
+
+add spark.tispark.pd.addresses to spark-defaults.conf
