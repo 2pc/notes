@@ -63,4 +63,8 @@ port = 4000
 ```
 
 skip-sqls: 基于前缀匹配？
+
+```
+skip-sqls = ["ALTER USER","DROP TEMPORARY TABLE IF EXISTS `tmp_table`", "CREATE USER","DROP /*!40005 TEMPORARY */ TABLE","ALTER TABLE `desktop"]
+```
  
