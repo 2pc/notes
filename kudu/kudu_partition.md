@@ -13,3 +13,6 @@ nice :  添加新的分区，新的tablets
 bad case : tablets 可以增长到很大
 
 nice : 在 tablets 上均匀分布
+
+
+多级组合分区  hash+range/hash+hash 
