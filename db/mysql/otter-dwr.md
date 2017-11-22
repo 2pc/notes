@@ -1,1 +1,1 @@
-![](otter-dwr)
+![](otter-dwr.png)
