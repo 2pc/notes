@@ -1,6 +1,6 @@
 
 TBLPROPERTIES 设置
-
+最新
 ```
 CREATE TABLE various_encodings
 (
@@ -13,6 +13,19 @@ CREATE TABLE various_encodings
   c6 STRING ENCODING DICT_ENCODING,
   c7 STRING ENCODING PREFIX_ENCODING
 ) PARTITION BY HASH(id) PARTITIONS 2 STORED AS KUDU TBLPROPERTIES ('kudu.num_tablet_replicas' = '1');
+```
+
+老版本
+
+```
+CREATE TABLE my_table (key_column_a STRING, key_column_b STRING, other_column STRING)
+DISTRIBUTE BY HASH (key_column_a, key_column_b) INTO 16 BUCKETS
+TBLPROPERTIES(
+    'storage_handler' = 'com.cloudera.kudu.hive.KuduStorageHandler',
+    'kudu.table_name' = 'my_table',
+    'kudu.master_addresses' = '172.28.3.131:7051',           
+    'kudu.key_columns' = 'key_column_a,key_column_b'
+);
 ```
 
  [Managing Kudu](https://www.cloudera.com/documentation/enterprise/latest/topics/cm_mc_kudu_service.html#impala_dependency)    
