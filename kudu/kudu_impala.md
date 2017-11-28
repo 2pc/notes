@@ -28,6 +28,17 @@ TBLPROPERTIES(
 );
 ```
 
+impala表创建kudu表,tpch的order表
+
+```
+CREATE  TABLE `t_new_orders_kudu`DISTRIBUTE BY HASH (o_orderkey) into 4 BUCKETS TBLPROPERTIES(
+  'storage_handler' = 'com.cloudera.kudu.hive.KuduStorageHandler',
+  'kudu.table_name' = 't_new_orders_kudu',
+  'kudu.master_addresses' = 'master01.yyfq.com:7051',
+  'kudu.key_columns' = 'o_orderkey'                
+) As select * from orders;
+```
+
  [Managing Kudu](https://www.cloudera.com/documentation/enterprise/latest/topics/cm_mc_kudu_service.html#impala_dependency)    
  [Using Impala to Query Kudu Tables](https://www.cloudera.com/documentation/enterprise/5-11-x/topics/impala_kudu.html#kudu_benefits)   
  [Installing Kudu-5-11-x](https://www.cloudera.com/documentation/enterprise/5-11-x/topics/kudu_install_cm.html)   
