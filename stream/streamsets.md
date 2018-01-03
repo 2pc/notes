@@ -56,3 +56,85 @@ AsyncRunner.java:149)
 all(SafeScheduledExecutorService.java:233)
         at java.util.concurrent.FutureTask.run(FutureTask.java:266)
 ```
+
+
+ ProductionPipelineRunner.run()
+ 
+ ```
+     try {
+      if (originPipe.getStage().getStage() instanceof PushSource) {
+        runPushSource();
+      } else {
+        runPollSource();
+      }
+
+    } catch (Throwable throwable) {}
+//runPushSource
+
+ originPipe.process(offsetTracker.getOffsets(), batchSize, this);
+
+//SourcePipe.process
+ getStage().execute(offsets, batchSize);
+
+ ```
+ 
+ StageRuntime.execute
+ 
+ ```
+   public void execute(final Map<String, String> offsets, final int batchSize) throws StageException {
+      Callable<String> callable = () -> {
+        switch (getDefinition().getType()) {
+          case SOURCE:
+            if(getStage() instanceof PushSource) {
+              ((PushSource)getStage()).produce(offsets, batchSize);
+              return null;
+            }
+            // fall through
+          default:
+            throw new IllegalStateException(Utils.format("Unknown stage type: '{}'", getDefinition().getType()));
+        }
+      };
+
+      execute(callable, null, null);
+  }
+
+  public String execute(
+    final String previousOffset,
+    final int batchSize,
+    final Batch batch,
+    final BatchMaker batchMaker,
+    ErrorSink errorSink,
+    EventSink eventSink
+  ) throws StageException {
+    Callable<String> callable = new Callable<String>() {
+      @Override
+      public String call() throws Exception {
+        String newOffset = null;
+        switch (getDefinition().getType()) {
+          case SOURCE: {
+            newOffset = ((Source) getStage()).produce(previousOffset, batchSize, batchMaker);
+            break;
+          }
+          case PROCESSOR: {
+            ((Processor) getStage()).process(batch, batchMaker);
+            break;
+
+          }
+          case EXECUTOR:
+          case TARGET: {
+            ((Target) getStage()).write(batch);
+            break;
+          }
+          default: {
+            throw new IllegalStateException(Utils.format("Unknown stage type: '{}'", getDefinition().getType()));
+          }
+        }
+        return newOffset;
+      }
+    };
+
+    return execute(callable, errorSink, eventSink);
+  }
+
+ ```
+ 
