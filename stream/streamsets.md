@@ -78,7 +78,7 @@ all(SafeScheduledExecutorService.java:233)
 
  ```
  
- StageRuntime.execute
+ ProductionPipelineRunner.run()--->ProductionPipelineRunner.processPipe()--->StagePipe.process()--->StageRuntime.execute
  
  ```
    public void execute(final Map<String, String> offsets, final int batchSize) throws StageException {
@@ -136,5 +136,38 @@ all(SafeScheduledExecutorService.java:233)
     return execute(callable, errorSink, eventSink);
   }
 
+ ```
+ 
+ target为例，这里可以是kudu,jdbc等
+ 
+ KuduTarget
+ 
+ ```
+   public void write(final Batch batch) throws StageException {
+    try {
+      if (!batch.getRecords().hasNext()) {
+        // No records - take the opportunity to clean up the cache so that we don't hold on to memory indefinitely
+        cacheCleaner.periodicCleanUp();
+      }
+
+      writeBatch(batch);
+    } catch (Exception e) {
+      throw throwStageException(e);
+    }
+  }
+ ```
+ 
+ JdbcTarget
+ 
+ ```
+   public void write(Batch batch) throws StageException {
+    if (!batch.getRecords().hasNext()) {
+      // No records - take the opportunity to clean up the cache so that we don't hold on to memory indefinitely
+      cacheCleaner.periodicCleanUp();
+    }
+    // jdbc target always commit batch execution
+    final boolean perRecord = false;
+    JdbcUtil.write(batch, schema, tableNameEval, tableNameVars, tableNameTemplate, caseSensitive, recordWriters, errorRecordHandler, perRecord);
+  }
  ```
  
