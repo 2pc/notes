@@ -9,7 +9,11 @@
 [Elasticsearch环境搭建和river数据导入（四）](http://xargin.com/elasticsearchhuan-jing-da-jian-he-rivershu-ju-dao-ru-si/)   
 [binlog-river-es](https://github.com/cch123/binlog-river-es/blob/master/binlog_ops.go)   
 [如何基于日志，同步实现数据的一致性和实时抽取?](http://weibo.com/ttarticle/p/show?id=2309351002704055141002156936)
+[canal读取mysql的binlog实时同步数据到kudu的数据异构方案 ](https://blog.csdn.net/qq_20641565/article/details/79193642) 
 
+```
+格式如下：（参考了宜信的dbus方案），其中payload里面是每条数据的具体信息，schema的fields是每个字段的元信息，其中ums_id（该ID是为了防止重复操作，消费端可能重复消费一条数据多次或者某些原因可能会多次操作，ums_id是对单个库的一个操作（增删改这些）来说是唯一且不变的，到时候消费端消费数据后会先根据id查看库中是否有这个ID如果库中的ums_id小于当前这个ums_id则操作，相反就说明该操作已经执行过就丢弃，并且如果存在真实删除数据，kudu端口也只能做逻辑删除，因为如果kudu端删除了，那么以前的数据重复过来了发现没有该ID ，那消费端那边又会去执行一次）是binlog名字（比如:mysql-bin.000010）加上该条数据的偏移量（其中偏移量前面补0暂时定为偏移量长度为30，比如下面的00000000000000090222）作为单个数据库每个操作的唯一标识，ums_ts就是这条语句执行的具体时间戳
+```
 
 ### binlog
 
