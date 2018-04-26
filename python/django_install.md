@@ -33,5 +33,32 @@ Type "help", "copyright", "credits" or "license" for more information.
 ln -s /usr/local/python3/lib/python3.5/site-packages/django/bin/django-admin.py  /usr/local/bin/django-admin.py
 ```
 
+创建project,app
+
+```
+[root@bigdata169 django]# django-admin.py  startproject firstproject
+c[root@bigdata169 django]# cd firstproject/
+[root@bigdata169 firstproject]# 
+[root@bigdata169 firstproject]# django-admin.py  startapp firstapp
+# tree
+.
+├── firstapp
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── firstproject
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+
+3 directories, 12 files
+```
 
 [Django 教程](https://code.ziqiangxuetang.com/django/django-tutorial.html)
