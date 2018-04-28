@@ -78,3 +78,5 @@ Configuration ->
 [2018-04-28 09:44:50,286: INFO/MainProcess] Scheduler: Sending due task task-one (celerytaskapp1.tasks.print_hello)
 
 ```
+
+[No module named schedules](https://stackoverflow.com/questions/23917905/django-celery-how-do-i-set-up-a-crontab-schedule-for-celery-in-my-django-app)
