@@ -46,3 +46,35 @@ $ tree
 │   └── views.py
 └── manage.py
 ```
+
+
+启动work
+
+```
+
+```
+
+启动beat
+```
+$ celery -A celeryproj  beat -l info -S django
+celery beat v4.0.2 (latentcall) is starting.
+__    -    ... __   -        _
+LocalTime -> 2018-04-28 09:44:30
+Configuration ->
+    . broker -> redis://172.28.3.158:6379/0
+    . loader -> celery.loaders.app.AppLoader
+    . scheduler -> django_celery_beat.schedulers.DatabaseScheduler
+
+    . logfile -> [stderr]@%INFO
+    . maxinterval -> 5.00 seconds (5s)
+[2018-04-28 09:44:30,156: INFO/MainProcess] beat: Starting...
+[2018-04-28 09:44:30,157: INFO/MainProcess] Writing entries...
+[2018-04-28 09:44:30,311: INFO/MainProcess] DatabaseScheduler: Schedule changed.
+[2018-04-28 09:44:30,311: INFO/MainProcess] Writing entries...
+[2018-04-28 09:44:35,274: INFO/MainProcess] Writing entries...
+[2018-04-28 09:44:35,300: INFO/MainProcess] Scheduler: Sending due task task-one (celerytaskapp1.tasks.print_hello)
+[2018-04-28 09:44:40,286: INFO/MainProcess] Scheduler: Sending due task task-one (celerytaskapp1.tasks.print_hello)
+[2018-04-28 09:44:45,285: INFO/MainProcess] Scheduler: Sending due task task-one (celerytaskapp1.tasks.print_hello)
+[2018-04-28 09:44:50,286: INFO/MainProcess] Scheduler: Sending due task task-one (celerytaskapp1.tasks.print_hello)
+
+```
