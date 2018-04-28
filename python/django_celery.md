@@ -51,7 +51,7 @@ $ tree
 启动work
 
 ```
-
+celery worker   -A celeryproj  -l info
 ```
 
 启动beat
