@@ -83,4 +83,5 @@ Configuration ->
 
 [Celery4.1.0](http://chowyi.com/2017/09/01/Django%E9%9B%86%E6%88%90Celery4.1.0/)   
 [django+django-celery+celery的整合](https://blog.csdn.net/yeyingcai/article/details/78647553)   
-[django使用celery定时任务，使用redis和supervisor](https://blog.csdn.net/win_turn/article/details/60658525)
+[django使用celery定时任务，使用redis和supervisor](https://blog.csdn.net/win_turn/article/details/60658525)   
+[Celery 源码解析八：State 和 Result](http://liuliqiang.info/post/220/)
