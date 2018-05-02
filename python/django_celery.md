@@ -82,3 +82,4 @@ Configuration ->
 [No module named schedules](https://stackoverflow.com/questions/23917905/django-celery-how-do-i-set-up-a-crontab-schedule-for-celery-in-my-django-app)
 
 [Celery4.1.0](http://chowyi.com/2017/09/01/Django%E9%9B%86%E6%88%90Celery4.1.0/)
+[django+django-celery+celery的整合](https://blog.csdn.net/yeyingcai/article/details/78647553)
