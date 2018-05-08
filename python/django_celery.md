@@ -78,9 +78,8 @@ Configuration ->
 [2018-04-28 09:44:50,286: INFO/MainProcess] Scheduler: Sending due task task-one (celerytaskapp1.tasks.print_hello)
 
 ```
-
+[Using Celery with Django](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html)   
 [No module named schedules](https://stackoverflow.com/questions/23917905/django-celery-how-do-i-set-up-a-crontab-schedule-for-celery-in-my-django-app)
-
 [Celery4.1.0](http://chowyi.com/2017/09/01/Django%E9%9B%86%E6%88%90Celery4.1.0/)   
 [django+django-celery+celery的整合](https://blog.csdn.net/yeyingcai/article/details/78647553)   
 [django使用celery定时任务，使用redis和supervisor](https://blog.csdn.net/win_turn/article/details/60658525)   
