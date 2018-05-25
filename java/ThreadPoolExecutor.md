@@ -31,3 +31,53 @@ else if (!addWorker(command, false))
 4. [dubbo实现](https://github.com/alibaba/dubbo/tree/master/dubbo-common/src/main/java/com/alibaba/dubbo/common/threadpool)
 
 5. [Tomcat线程池详解](http://blog.csdn.net/wxq544483342/article/details/53162311)
+
+
+几种的弊端
+
+
+Executors.newCachedThreadPool();线程数最大Integer.MAX_VALUE，为不受限制，
+
+```
+public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue<Runnable>());
+    }
+```
+
+Executors.newFixedThreadPool();对列大小为Integer.MAX_VALUE
+
+```
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue<Runnable>());
+}
+public LinkedBlockingQueue() {
+    this(Integer.MAX_VALUE);
+}
+```
+
+Executors.newSingleThreadExecutor();
+
+```
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue<Runnable>()));
+}
+```
+
+Executors.newScheduledThreadPool();
+
+```
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+    return new ScheduledThreadPoolExecutor(corePoolSize);
+}
+public ScheduledThreadPoolExecutor(int corePoolSize) {
+    super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+          new DelayedWorkQueue());
+}
+```
