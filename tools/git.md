@@ -32,3 +32,9 @@ git config user.name yourname
 git config user.email yourmail
 git config --list
 ```
+
+####  远程地址
+
+```
+git remote -v
+```
