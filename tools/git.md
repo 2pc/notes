@@ -40,6 +40,11 @@ git config --list
 git remote -v
 ```
 
+
+remote: Permission to B/Demo.git denied to A.fatal: unable to access 'https://github.com/A/Demo.git/': The requested URL returned error: 403
+. [Git push/pull的时候报403或者提交时报错：Permission to XXX.git denied to user](https://blog.csdn.net/ltstud/article/details/77895382?locationNum=10&fps=1)   
+. [Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案](https://www.jianshu.com/p/12badb7e6c10)
+
 ####  reset
 
 ```
