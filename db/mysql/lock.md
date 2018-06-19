@@ -21,6 +21,14 @@ show open tables where in_use>0;
 这个是大致行数
 
 ```
-select TABLE_SCHEMA as dbname,TABLE_NAME tableName, TABLE_ROWS count from tables where TABLE_NAME = 'e001_t_act_activity_history' and TABLE_SCHEMA='afs';
+MySQL [information_schema]> select TABLE_SCHEMA as dbname,TABLE_NAME tableName, TABLE_ROWS count from tables where TABLE_NAME = 'e001_t_act_activity_history' and TABLE_SCHEMA='afs';
++--------+-----------------------------+---------+
+| dbname | tableName                   | count   |
++--------+-----------------------------+---------+
+| afs    | e001_t_act_activity_history | 6326611 |
++--------+-----------------------------+---------+
+1 row in set (0.01 sec)
+
+MySQL [information_schema]>
 ```
 
