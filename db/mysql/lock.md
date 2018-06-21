@@ -31,4 +31,27 @@ MySQL [information_schema]> select TABLE_SCHEMA as dbname,TABLE_NAME tableName, 
 
 MySQL [information_schema]>
 ```
+PROCESSLIST表
+```
+MySQL [information_schema]> desc PROCESSLIST;
++---------------+---------------------+------+-----+---------+-------+
+| Field         | Type                | Null | Key | Default | Extra |
++---------------+---------------------+------+-----+---------+-------+
+| ID            | bigint(21) unsigned | NO   |     | 0       |       |
+| USER          | varchar(32)         | NO   |     |         |       |
+| HOST          | varchar(64)         | NO   |     |         |       |
+| DB            | varchar(64)         | YES  |     | NULL    |       |
+| COMMAND       | varchar(16)         | NO   |     |         |       |
+| TIME          | int(7)              | NO   |     | 0       |       |
+| STATE         | varchar(64)         | YES  |     | NULL    |       |
+| INFO          | longtext            | YES  |     | NULL    |       |
+| TIME_MS       | bigint(21)          | NO   |     | 0       |       |
+| ROWS_SENT     | bigint(21) unsigned | NO   |     | 0       |       |
+| ROWS_EXAMINED | bigint(21) unsigned | NO   |     | 0       |       |
++---------------+---------------------+------+-----+---------+-------+
+11 rows in set (0.05 sec)
+```
 
+```
+ select count(*) from PROCESSLIST where db='afs' and STATE='update'  \G;
+```
