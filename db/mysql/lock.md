@@ -61,3 +61,8 @@ The following statements are equivalent[23.16 The INFORMATION_SCHEMA PROCESSLIST
 SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST
 SHOW FULL PROCESSLIST
 ```
+
+查询执行sql的ip 的连接数量[关于查询mysql processlist的建议](http://blog.51cto.com/liuminkun/1685492)
+```
+select left(host,instr(host,':')-1) as ip,count(*) as num from information_schema.processlist group by ip order by num desc;
+```
