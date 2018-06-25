@@ -55,3 +55,9 @@ MySQL [information_schema]> desc PROCESSLIST;
 ```
  select count(*) from PROCESSLIST where db='afs' and STATE='update'  \G;
 ```
+
+The following statements are equivalent[23.16 The INFORMATION_SCHEMA PROCESSLIST Table](https://dev.mysql.com/doc/refman/8.0/en/processlist-table.html)
+```
+SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST
+SHOW FULL PROCESSLIST
+```
