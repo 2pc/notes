@@ -238,3 +238,8 @@ public int run(SqoopOptions options) {
 }
 ```
 
+[关于开源工具Sqoop源码解读----Mysql字符串作为主键主键分片](https://blog.csdn.net/fyhailin/article/details/79069475)   
+[sqoop系列-TextSplitter踩坑记](https://blog.csdn.net/MuQianHuanHuoZhe/article/details/80585672)   
+[Sqoop中通过hadoop mapreduce从关系型数据库import数据分析](https://blog.csdn.net/lyn1539815919/article/details/52400555)   
+[sqoop导入数据map-reduce job分析](http://blog.51cto.com/dwf07223/1440256)
+
