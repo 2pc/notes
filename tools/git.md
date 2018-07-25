@@ -52,4 +52,8 @@ git reset --hard commitid
 git push -f
 ```
 
+### book 
+
+[Pro Git book](https://git-scm.com/book/zh/v2)
+
 
