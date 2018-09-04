@@ -11,7 +11,7 @@
 另外还有几种policy，比如volatile-ttl按最接近expire time的，allkeys-lru对所有key都做LRU。 
 原来2.0版的VM(将Value放到磁盘，Key仍然放在内存)，2.4版后又不支持了。
 
-TechTarget中国原创内容，原文链接： [searchdatabase](https://searchdatabase.techtarget.com.cn/7-21572/)
-© TechTarget中国：https://www.techtarget.com.cn
+TechTarget中国原创内容，原文链接： [searchdatabase](https://searchdatabase.techtarget.com.cn/7-21572/)   
+© TechTarget中国：https://www.techtarget.com.cn   
 [关于Redis的一些常识](https://searchdatabase.techtarget.com.cn/7-21572/)   
 [Redis需要多少内存预留-内存占用多少才安全](https://blog.csdn.net/chenggong2dm/article/details/79306151)
