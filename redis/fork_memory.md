@@ -15,4 +15,5 @@ TechTarget中国原创内容，原文链接： [searchdatabase](https://searchda
 © TechTarget中国：https://www.techtarget.com.cn   
 [关于Redis的一些常识](https://searchdatabase.techtarget.com.cn/7-21572/)   
 [Redis需要多少内存预留-内存占用多少才安全](https://blog.csdn.net/chenggong2dm/article/details/79306151)   
-[fork()后copy on write的一些特性](https://zhoujianshi.github.io/articles/2017/fork()%E5%90%8Ecopy%20on%20write%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7/index.html)
+[fork()后copy on write的一些特性](https://zhoujianshi.github.io/articles/2017/fork()%E5%90%8Ecopy%20on%20write%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7/index.html)   
+[写时复制-cow-handle_pte_fault()](https://blog.csdn.net/w5543081/article/details/3552089)
