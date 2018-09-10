@@ -1,7 +1,7 @@
 
 
 ```
-etcdserver.NewServer(etcdserver/server.go)-->raft.StartNode(c, peers)(etcdserver/raft.go)
+etcdserver.NewServer(etcdserver/server.go)-->startNode(cfg, cl, cl.MemberIDs())(etcdserver/server.go)-->raft.StartNode(c, peers)(etcdserver/raft.go)
 -->node.StartNode(raft/node.go--r.becomeFollower(1, None))-->
 ```
 定时处理函数tickElection,tickHeartbeat(raft/raft.go)
