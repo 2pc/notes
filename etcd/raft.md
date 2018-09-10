@@ -1,7 +1,11 @@
 
 
+1.如果当候选人candidate的所拥有最新日志index和最新日志的term要小于follower的最新日志index和最新日志的term，则投反对票
+2.使用随机选举超时时间的方法来确保很少会发生选票瓜分的情况
+3.发生网络分区后，通过心跳和term等机制判断更新老leader为follower，未持久化的数据将丢失。新leader将自己已存储但follower没有的数据再次发送一遍，保证从节点与主节点的数据一致性
+
 ```
-etcdserver.NewServer(etcdserver/server.go)-->startNode(cfg, cl, cl.MemberIDs())(etcdserver/server.go)-->raft.StartNode(c, peers)(etcdserver/raft.go)
+StartEtcd()-->etcdserver.NewServer(etcdserver/server.go)-->startNode(cfg, cl, cl.MemberIDs())(etcdserver/server.go)-->raft.StartNode(c, peers)(etcdserver/raft.go)
 -->node.StartNode(raft/node.go--r.becomeFollower(1, None))-->
 ```
 定时处理函数tickElection,tickHeartbeat(raft/raft.go)
