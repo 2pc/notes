@@ -4,7 +4,7 @@
 
 ### interface  
 
-如果一个struct实现了interface的所有方法，就说改struct实现了该interface
+如果一个struct实现了interface的所有方法，就说该struct实现了该interface
 
 
 ```
@@ -53,9 +53,10 @@ func measure(g geometry) {
 }
 func main() {
 	r := rect{width: 3, height: 4}
+	
 	c := circle{radius: 5}
-
-		measure(r)
-		measure(c)
-	}
+	
+	measure(r)
+	measure(c)
+}
 ```
