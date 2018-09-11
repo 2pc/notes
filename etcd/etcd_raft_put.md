@@ -549,6 +549,8 @@ case ap := <-s.r.apply():
 ```
 
 applyAll()-->s.apply-->s.applyEntryNormal(&e)-->s.applyV3.Apply()/s.w.Trigger(req.ID, s.applyV2Request(req))
+
 s.applyV3.Apply()-->
+s.applyV2Request(req)-->
 
 
