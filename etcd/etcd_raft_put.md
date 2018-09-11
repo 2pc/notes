@@ -158,3 +158,93 @@ case ch <- pm:
     return nil
   }
 ```
+
+找到对应的propc就好了，这个在node(raft/node.go)的主循环run()中
+
+```
+//raft/node.go->run()
+select {
+// TODO: maybe buffer the config propose if there exists one (the way
+// described in raft dissertation)
+// Currently it is dropped in Step silently.
+case pm := <-propc:
+	m := pm.m
+	m.From = r.id
+	err := r.Step(m)
+	if pm.result != nil {
+		pm.result <- err
+		close(pm.result)
+	}
+```
+raft/raft.go
+
+```
+//func (r *raft) Step(m pb.Message) error {}<-->raft/raft.go
+default:
+	err := r.step(r, m)
+	if err != nil {
+		return err
+	}
+}
+```
+这个step依据不同的角色是不同的，分别对应stepCandidate，stepFollower，stepLeader，都是在bexx中赋值的
+
+```
+func (r *raft) becomeCandidate() {
+	// TODO(xiangli) remove the panic when the raft implementation is stable
+	if r.state == StateLeader {
+		panic("invalid transition [leader -> candidate]")
+	}
+	r.step = stepCandidate
+	r.reset(r.Term + 1)
+	r.tick = r.tickElection
+	r.Vote = r.id
+	r.state = StateCandidate
+	r.logger.Infof("%x became candidate at term %d", r.id, r.Term)
+}
+func (r *raft) becomeFollower(term uint64, lead uint64) {
+	r.step = stepFollower
+	r.reset(term)
+	r.tick = r.tickElection
+	r.lead = lead
+	r.state = StateFollower
+	r.logger.Infof("%x became follower at term %d", r.id, r.Term)
+}
+func (r *raft) becomeLeader() {
+	// TODO(xiangli) remove the panic when the raft implementation is stable
+	if r.state == StateFollower {
+		panic("invalid transition [follower -> leader]")
+	}
+	r.step = stepLeader
+	r.reset(r.Term)
+	r.tick = r.tickHeartbeat
+	r.lead = r.id
+	r.state = StateLeader
+
+	// Conservatively set the pendingConfIndex to the last index in the
+	// log. There may or may not be a pending config change, but it's
+	// safe to delay any future proposals until we commit all our
+	// pending log entries, and scanning the entire tail of the log
+	// could be expensive.
+	r.pendingConfIndex = r.raftLog.lastIndex()
+
+	r.appendEntry(pb.Entry{Data: nil})
+	r.logger.Infof("%x became leader at term %d", r.id, r.Term)
+}
+func (r *raft) becomePreCandidate() {
+	// TODO(xiangli) remove the panic when the raft implementation is stable
+	if r.state == StateLeader {
+		panic("invalid transition [leader -> pre-candidate]")
+	}
+	// Becoming a pre-candidate changes our step functions and state,
+	// but doesn't change anything else. In particular it does not increase
+	// r.Term or change r.Vote.
+	r.step = stepCandidate
+	r.votes = make(map[uint64]bool)
+	r.tick = r.tickElection
+	r.state = StatePreCandidate
+	r.logger.Infof("%x became pre-candidate at term %d", r.id, r.Term)
+}
+```
+
+
