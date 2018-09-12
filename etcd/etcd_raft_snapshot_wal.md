@@ -42,7 +42,17 @@ func (st *storage) SaveSnap(snap raftpb.Snapshot) error {
 	}
 	return st.WAL.ReleaseLockTo(snap.Metadata.Index)
 }
+
 ```
+
+需要注意下storage这个struct,两个变量Wal,Snapshotter没有变量名，因此可以storage.Save()与storage.WAL.Save()一样
+```
+type storage struct {
+	*wal.WAL
+	*snap.Snapshotter
+}
+```
+
 etcd server中wal,snapshot的创建与load
 
 ```
