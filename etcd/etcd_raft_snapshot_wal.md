@@ -210,19 +210,48 @@ type raftLog struct {
 }
 
 ```
+ 再看下restartnode()，看下raftstore与etcd store是如何联系起来的
+ ```
+ etcdserver/raft.go
+ func restartNode(c){
+ 
+	if snapshot != nil {
+		walsnap.Index, walsnap.Term = snapshot.Metadata.Index, snapshot.Metadata.Term
+	}
+	w, id, cid, st, ents := readWAL(cfg.Logger, cfg.WALDir(), walsnap)
+	s := raft.NewMemoryStorage()
+	if snapshot != nil {
+		s.ApplySnapshot(*snapshot)
+	}
+	s.SetHardState(st)
+	s.Append(ents)//将wal中的all entry append到memorystory
+	c := &raft.Config{
+		ID:              uint64(id),
+		ElectionTick:    cfg.ElectionTicks,
+		HeartbeatTick:   1,
+		Storage:         s,//这个是raft库使用的memorystore
+		MaxSizePerMsg:   maxSizePerMsg,
+		MaxInflightMsgs: maxInflightMsgs,
+		CheckQuorum:     true,
+		PreVote:         cfg.PreVote,
+	}
+ }
+ ```
+ 可以看出memorystore也是从wal中append了所有entry,在重启的时候保证wal与raftlog(memorystore)数据是一致的
+ 
  startnode()与restartnode()返回值s,w分别是memerystore,与wal，他们与ss一起构成供raft库使用的raftstore，以及etcd持久化的storage
 ```
 snapshotter: ss,
-		r: *newRaftNode(
-			raftNodeConfig{
-				lg:          cfg.Logger,
-				isIDRemoved: func(id uint64) bool { return cl.IsIDRemoved(types.ID(id)) },
-				Node:        n,
-				heartbeat:   heartbeat,
-				raftStorage: s,
-				storage:     NewStorage(w, ss),
-			},
-		),
+r: *newRaftNode(
+	raftNodeConfig{
+		lg:          cfg.Logger,
+		isIDRemoved: func(id uint64) bool { return cl.IsIDRemoved(types.ID(id)) },
+		Node:        n,
+		heartbeat:   heartbeat,
+		raftStorage: s,
+		storage:     NewStorage(w, ss),
+	},
+),
 ```
 再看下ss
 ```
