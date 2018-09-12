@@ -263,5 +263,47 @@ func New(lg *zap.Logger, dir string) *Snapshotter {
 	}
 }
 ```
+load snapshot
+
+```
+snapshot, err = ss.Load()
+//etcdserver/api/snap/snapshotter.go
+func (s *Snapshotter) Load() (*raftpb.Snapshot, error) {
+	names, err := s.snapNames()
+	if err != nil {
+		return nil, err
+	}
+	var snap *raftpb.Snapshot
+	for _, name := range names {
+		if snap, err = loadSnap(s.lg, s.dir, name); err == nil {
+			break
+		}
+	}
+	if err != nil {
+		return nil, ErrNoSnapshot
+	}
+	return snap, nil
+}
+//etcdserver/api/snap/snapshotter.go
+// snapNames returns the filename of the snapshots in logical time order (from newest to oldest).
+// If there is no available snapshots, an ErrNoSnapshot will be returned.
+func (s *Snapshotter) snapNames() ([]string, error) {
+	dir, err := os.Open(s.dir)
+	if err != nil {
+		return nil, err
+	}
+	defer dir.Close()
+	names, err := dir.Readdirnames(-1)
+	if err != nil {
+		return nil, err
+	}
+	snaps := checkSuffix(s.lg, names)
+	if len(snaps) == 0 {
+		return nil, ErrNoSnapshot
+	}
+	sort.Sort(sort.Reverse(sort.StringSlice(snaps)))
+	return snaps, nil
+}
+```
 
 
