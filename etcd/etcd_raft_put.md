@@ -550,7 +550,8 @@ case ap := <-s.r.apply():
 
 applyAll()-->s.apply-->s.applyEntryNormal(&e)-->s.applyV3.Apply()/s.w.Trigger(req.ID, s.applyV2Request(req))
 
-s.applyV3.Apply()-->   
+s.applyV3.Apply()-->applierV3backend.Apply()-->a.s.applyV3.Put(nil, r.Put)-->txn = a.s.KV().Write()-->txn.Put(p.Key, val, leaseID)-->tw.put(key, value, lease)-->tw.tx.UnsafeSeqPut(keyBucketName, ibytes, d)
+/tw.s.kvindex.Put(key, idxRev)/tw.changes = append(tw.changes, kv)
 
 s.applyV2Request(req)-->
 
