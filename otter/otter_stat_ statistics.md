@@ -97,3 +97,12 @@ private void sendStat(Identity identity) {
     }
 }
 ```
+
+发送出去后远端服务 主要看StatsRemoteServiceImpl
+```
+ public StatsRemoteServiceImpl(){
+  // 注册一下事件处理
+  CommunicationRegistry.regist(StatisticsEventType.delayCount, this);
+  CommunicationRegistry.regist(StatisticsEventType.tableStat, this);
+  CommunicationRegistry.regist(StatisticsEventType.throughputStat, this);
+```
