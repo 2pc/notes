@@ -46,12 +46,19 @@ func (st *storage) SaveSnap(snap raftpb.Snapshot) error {
 ```
 
 需要注意下storage这个struct,两个变量Wal,Snapshotter没有变量名，因此可以storage.Save()与storage.WAL.Save()一样
-这是一个内嵌组合结构体？ WAL实现了Save() Close()方法，Snapshotter重载了SaveSnap()
 ```
 type storage struct {
 	*wal.WAL
 	*snap.Snapshotter
 }
+```
+这是一个内嵌组合结构体？ WAL实现了Save() Close()方法，Snapshotter重载了SaveSnap()
+
+```
+func (w *WAL) Save(st raftpb.HardState, ents []raftpb.Entry) error {}
+func (w *WAL) Close() error {}
+//Snapshotter重载
+func (s *Snapshotter) SaveSnap(snapshot raftpb.Snapshot) error {}
 ```
 
 etcd server中wal,snapshot的创建与load
