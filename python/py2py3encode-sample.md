@@ -1,3 +1,10 @@
+python 正常print不乱码的包含中文的map或者list
+
+```
+import json
+print "result: "+ json.dumps(map, encoding="UTF-8", ensure_ascii=False)
+print '\n'.join(list)
+```
 
 python2
 
