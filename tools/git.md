@@ -52,6 +52,14 @@ git reset --hard commitid
 git push -f
 ```
 
+### 查询commit位于那个分支
+
+```
+$ git branch -r --contains fdb11c52f1d0f39abceee02f4ad5beaf1034e05f
+  origin/release-1.6
+
+```
+
 ### book 
 
 [Pro Git book](https://git-scm.com/book/zh/v2)
