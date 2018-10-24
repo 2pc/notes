@@ -132,3 +132,6 @@ func (c *Canal) startSyncBinlog() error {
 	return nil
 }
 ```
+
+[dtle基于gtid?](https://github.com/actiontech/dtle)
+
