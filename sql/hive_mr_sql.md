@@ -4,7 +4,7 @@
 从metastore中获取表的信息，SemanticAnalyzer.getMetaData完成。   
 生成逻辑执行计划，SemanticAnalyzer.genPlan完成。   
 优化逻辑执行计划，Optimizer完成，ParseContext作为上下文信息进行传递。   
-生成物理执行计划，SemanticAnalyzer.genMapRedTasks完成。   
+生成物理执行计划，SemanticAnalyzer.generateTaskTree完成。   
 物理计划优化，PhysicalOptimizer完成，PhysicalContext作为上下文信息进行传递
 
 
