@@ -1,10 +1,10 @@
 
-词法分析，生成AST树，ParseDriver完成。
-分析AST树，AST拆分成查询子块，信息记录在QB，这个QB在下面几个阶段都需要用到，SemanticAnalyzer.doPhase1完成。
-从metastore中获取表的信息，SemanticAnalyzer.getMetaData完成。
-生成逻辑执行计划，SemanticAnalyzer.genPlan完成。
-优化逻辑执行计划，Optimizer完成，ParseContext作为上下文信息进行传递。
-生成物理执行计划，SemanticAnalyzer.genMapRedTasks完成。
+词法分析，生成AST树，ParseDriver完成。   
+分析AST树，AST拆分成查询子块，信息记录在QB，这个QB在下面几个阶段都需要用到，SemanticAnalyzer.doPhase1完成。   
+从metastore中获取表的信息，SemanticAnalyzer.getMetaData完成。   
+生成逻辑执行计划，SemanticAnalyzer.genPlan完成。   
+优化逻辑执行计划，Optimizer完成，ParseContext作为上下文信息进行传递。   
+生成物理执行计划，SemanticAnalyzer.genMapRedTasks完成。   
 物理计划优化，PhysicalOptimizer完成，PhysicalContext作为上下文信息进行传递
 
 
