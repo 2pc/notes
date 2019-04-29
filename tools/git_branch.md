@@ -13,3 +13,42 @@ git  --set-upstream origin fromdev
 git checkout dev //先切换到dev
 git merge fromdev
 ```
+
+git merge branch_name 之后可能出现冲突
+
+可以用git status查看冲突的是哪些文件,比如
+
+```
+$ git status                                            
+On branch luping                                        
+Your branch is up to date with 'origin/luping'.         
+                                                        
+You have unmerged paths.                                
+  (fix conflicts and run "git commit")                  
+  (use "git merge --abort" to abort the merge)          
+                                                        
+Changes to be committed:                                
+                                                        
+        modified:   dispatcher-spark-streaming/pom.xml  
+        deleted:    dispatcher-spark-streaming/src/main/
+        deleted:    dispatcher-spark-streaming/src/main/
+        deleted:    dispatcher-spark-streaming/src/main/
+        modified:   dispatcher-spark-streaming/src/main/
+        new file:   dispatcher-spark-streaming/src/main/
+        modified:   dispatcher-spark-streaming/src/main/
+        modified:   dispatcher-structured-streaming/src/
+        modified:   dispatcher-structured-streaming/src/
+        modified:   dispatcher-structured-streaming/src/
+        modified:   dispatcher-structured-streaming/src/
+        modified:   dispatcher-structured-streaming/src/
+        new file:   dispatcher-structured-streaming/src/
+        modified:   dispatcher-structured-streaming/src/
+                                                        
+Unmerged paths:                                         
+  (use "git add/rm <file>..." as appropriate to mark res
+                                                        
+        both modified:   dispatcher-static-table/pom.xml
+        both modified:   dispatcher-structured-streaming
+        deleted by us:   dispatcher-structured-streaming
+
+```
