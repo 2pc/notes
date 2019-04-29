@@ -20,8 +20,8 @@ git merge branch_name 之后可能出现冲突
 
 ```
 $ git status                                            
-On branch luping                                        
-Your branch is up to date with 'origin/luping'.         
+On branch xxx                                     
+Your branch is up to date with 'origin/xxx'.         
                                                         
 You have unmerged paths.                                
   (fix conflicts and run "git commit")                  
