@@ -6,13 +6,13 @@ echo "YARN_CONF_DIR|$YARN_CONF_DIR======================"
 echo "HADOOP_CONF_DIR|$HADOOP_CONF_DIR======================"
 echo "SPARK_CONF_DIR|$SPARK_CONF_DIR======================"
 ```
-$ /home/bidata/hadoop_client/spark-2.4.3-bin-hadoop2.7/bin/spark-submit --version
+$ /home/bigdata/hadoop_client/spark-2.4.3-bin-hadoop2.7/bin/spark-submit --version
 ```
-HADOOP_HOME|/home/bidata/hadoop_client/hadoop======================
-SPARK_HOME|/home/bidata/hadoop_client/spark-2.4.3-bin-hadoop2.7======================
-yarnConfDir|/home/bidata/hadoop_client/hadoop/etc/hadoop======================
-HADOOP_CONF_DIR|/home/bidata/hadoop_client/hadoop/etc/hadoop======================
-SPARK_CONF_DIR|/home/bidata/hadoop_client/spark-2.4.3-bin-hadoop2.7/conf======================
+HADOOP_HOME|/home/bigdata/hadoop_client/hadoop======================
+SPARK_HOME|/home/bigdata/hadoop_client/spark-2.4.3-bin-hadoop2.7======================
+yarnConfDir|/home/bigdata/hadoop_client/hadoop/etc/hadoop======================
+HADOOP_CONF_DIR|/home/bigdata/hadoop_client/hadoop/etc/hadoop======================
+SPARK_CONF_DIR|/home/bigdata/hadoop_client/spark-2.4.3-bin-hadoop2.7/conf======================
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
