@@ -9,24 +9,24 @@ System.out.println("dump: "+node.dump());
 
 sql
 ```
-			System.out.println("add columns: "+JSON.toJSON(hiveparse.getAlterTablesMap("alter table  dp_eco_mart.eco_user_basic_info  add columns(fpd_label int,fpd_label_str string)")
-			));
-			System.out.println("CHANGE columns: "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE employee CHANGE name ename String")
-					));
+System.out.println("add columns: "+JSON.toJSON(hiveparse.getAlterTablesMap("alter table  dp_eco_mart.eco_user_basic_info  add columns(fpd_label int,fpd_label_str string)")
+));
+System.out.println("CHANGE columns: "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE employee CHANGE name ename String")
+		));
 //			System.out.println("DROP columns: "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE employee DROP name")
 //					));
-			
-			System.out.println("DROP/REPLACE columns : "+JSON.toJSON(hiveparse.getAlterTablesMap(" ALTER TABLE emp REPLACE COLUMNS( name string, dept string) ")
-					));
-			
-			System.out.println("drop partition: "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE login DROP IF EXISTS PARTITION (dt='2008-08-08')")
-					));
-			System.out.println("ADD PARTITION : "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE table_name ADD PARTITION (partCol = 'value1') location 'loc1'")
-					));
 
-			
-			System.out.println("rename: "+JSON.toJSON(hiveparse.getAlterTablesMap("alter table  dp_eco_mart.eco_user_basic_info  rename to dp_eco_mart.eco_user_basic_info_test")
-					));
+System.out.println("DROP/REPLACE columns : "+JSON.toJSON(hiveparse.getAlterTablesMap(" ALTER TABLE emp REPLACE COLUMNS( name string, dept string) ")
+		));
+
+System.out.println("drop partition: "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE login DROP IF EXISTS PARTITION (dt='2008-08-08')")
+		));
+System.out.println("ADD PARTITION : "+JSON.toJSON(hiveparse.getAlterTablesMap("ALTER TABLE table_name ADD PARTITION (partCol = 'value1') location 'loc1'")
+		));
+
+
+System.out.println("rename: "+JSON.toJSON(hiveparse.getAlterTablesMap("alter table  dp_eco_mart.eco_user_basic_info  rename to dp_eco_mart.eco_user_basic_info_test")
+		));
 ```
 dump
 ```
