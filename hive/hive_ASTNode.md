@@ -1,13 +1,18 @@
-hive_ASTNode
+注意下drop  col
+有id,name和dept列的表emp.如果想删除表emp的id列，用replace如下
+```
+ALTER TABLE emp REPLACE COLUMNS( name string, dept string);
+```
+# hive_ASTNode
 
 ```
 ParseDriver pd = new ParseDriver();
 ASTNode node = findRootNonNullToken(pd.parse(sql));
 System.out.println("dump: "+node.dump());
 ```
-### eg
+## eg
 
-sql
+sql：
 ```
 System.out.println("add columns: "+JSON.toJSON(hiveparse.getAlterTablesMap("alter table  dp_eco_mart.eco_user_basic_info  add columns(fpd_label int,fpd_label_str string)")
 ));
