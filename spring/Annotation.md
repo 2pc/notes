@@ -27,8 +27,10 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 ```
 设置了beanname,
+```
 1，如果类第一个第二个字母都是大小，则直接使用classname作为beanname
 2，否则将第一个字母改成小写后作为beanname
+```
 
 ```
 	protected String determineBeanNameFromAnnotation(AnnotatedBeanDefinition annotatedDef) {
