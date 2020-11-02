@@ -55,6 +55,6 @@ Unmerged paths:
 删除分支
 
 ```
-git push --delete origin deletebranch
+git push --delete origin deletebranch(remotes/origin/deletebranch)
 ```
 
