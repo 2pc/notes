@@ -52,3 +52,9 @@ Unmerged paths:
         deleted by us:   dispatcher-structured-streaming
 
 ```
+删除分支
+
+```
+git push --delete origin deletebranch
+```
+
