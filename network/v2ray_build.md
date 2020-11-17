@@ -18,4 +18,7 @@ golang配置 切记，首先要编译出v2ctl.exe
 Run kind --> Package
 Package Path --> v2ray.com/core/main
 Enviroment --> v2ray.location.tool=C:\Users\Administrator
+
 ```
+
+[Tutorial] Windows 下手动编译、交叉编译 v2ray 的详细方法 #756](https://github.com/v2ray/discussion/issues/756)
