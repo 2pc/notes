@@ -1,6 +1,7 @@
 
 Window下使用goland调试v2ray-core
 
+
 ```
 PS E:\code\github\v2ray-core> echo $HOME
 C:\Users\Administrator
@@ -10,7 +11,8 @@ PS E:\code\github\v2ray-core> go build -o $HOME/v2ctl.exe -trimpath -ldflags "-s
 ```
 
 
-golang配置
+golang配置 切记，首先要编译出v2ctl.exe
+
 
 ```
 Run kind --> Package
