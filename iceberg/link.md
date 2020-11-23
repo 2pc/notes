@@ -1,3 +1,5 @@
 [Row-level Delete](https://github.com/apache/iceberg/milestone/4)   
 [Spark: Apply row-level delete files when reading #1444](https://github.com/apache/iceberg/pull/1444/commits/acea9bd174be0961167a3c5d9a58401b45dfd401)   
-[Support row-level deletes with IcebergGenerics #1352](https://github.com/apache/iceberg/pull/1352)
+[Support row-level deletes with IcebergGenerics #1352](https://github.com/apache/iceberg/pull/1352)   
+[一条数据在 Apache Iceberg 之旅：写过程分析](https://blog.csdn.net/wypblog/article/details/109685363)   
+[Iceberg功能｜聊一聊Iceberg重磅功能Row-level delete](https://wemp.app/posts/60eb346b-f0d3-4d95-8143-ac5603d8b523)
