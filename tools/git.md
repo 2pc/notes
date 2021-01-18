@@ -60,6 +60,12 @@ $ git branch -r --contains fdb11c52f1d0f39abceee02f4ad5beaf1034e05f
 
 ```
 
+### 删除分支
+```
+git push origin --delete tmp
+git branch -D tmp
+```
+
 ### book 
 
 [Pro Git book](https://git-scm.com/book/zh/v2)
