@@ -1,0 +1,3 @@
+# Notes
+
+> An awesome project.
